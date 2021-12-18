@@ -17,9 +17,6 @@
 [Bb]uilds/
 [Ll]ogs/
 
-#ignore all imported assets except the game project file
-[Aa]ssets/Mirror/
-[Aa]ssets/TextMesh Pro/
 
 # Never ignore Asset meta data
 ![Aa]ssets/**/*.meta
