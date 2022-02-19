@@ -15,6 +15,9 @@ namespace Units
         private List<Unit> _selectedUnits = new List<Unit>();
         private Camera _mainCamera;
 
+        public LayerMask LayerMask { get => _layerMask; }
+        public List<Unit> SelectedUnits { get => _selectedUnits; }
+
         #region Client
         private void Awake()
         {
@@ -25,7 +28,7 @@ namespace Units
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                _selectedUnits.ForEach(unit => unit.OnDeselect());
+                _selectedUnits.ForEach(unit => unit.Deselect());
                 _selectedUnits.Clear();
             }
             if (Mouse.current.leftButton.wasReleasedThisFrame)
@@ -44,7 +47,7 @@ namespace Units
             if (!hit.collider.TryGetComponent(out Unit unit)) return;
 
             _selectedUnits.Add(unit);
-            _selectedUnits.ForEach(unit => unit.OnSelect());
+            _selectedUnits.ForEach(unit => unit.Select());
         }
         #endregion
     }
