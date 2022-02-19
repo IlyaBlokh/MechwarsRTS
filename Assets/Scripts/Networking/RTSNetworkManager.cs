@@ -11,11 +11,11 @@ namespace Networking
         public override void OnServerAddPlayer(NetworkConnection conn)
         {
             base.OnServerAddPlayer(conn);
-            var _playerUnitSpawner = Instantiate(
+            var _unitSpawnerBuilding = Instantiate(
                         _unitSpawnerBuildingPrefab,
                         conn.identity.transform.position,
                         conn.identity.transform.rotation);
-            NetworkServer.Spawn(_playerUnitSpawner, conn);
+            NetworkServer.Spawn(_unitSpawnerBuilding, conn);
         }
     }
 }

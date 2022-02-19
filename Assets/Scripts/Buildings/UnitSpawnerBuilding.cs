@@ -13,7 +13,7 @@ namespace Buildings
         [SerializeField]
         private Transform _spawnPoint;
 
-        #region server
+        #region Server
         [Command]
         private void CmdSpawnLaserTankUnit()
         {
@@ -24,7 +24,7 @@ namespace Buildings
         }
         #endregion
 
-        #region client
+        #region Client
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Left) return;
