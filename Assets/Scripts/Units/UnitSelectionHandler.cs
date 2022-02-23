@@ -10,10 +10,13 @@ namespace Units
     public class UnitSelectionHandler : NetworkBehaviour
     {
         [SerializeField]
-        private LayerMask layerMask;
+        private RectTransform selectionFrame;
         [SerializeField]
+        private LayerMask layerMask;
+        
         private List<Unit> selectedUnits = new List<Unit>();
         private Camera mainCamera;
+        private Vector2 startSelectionPosition;
 
         public LayerMask LayerMask { get => layerMask; }
         public List<Unit> SelectedUnits { get => selectedUnits; }
@@ -28,17 +31,40 @@ namespace Units
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                selectedUnits.ForEach(unit => unit.Deselect());
-                selectedUnits.Clear();
+                InitSelection(); 
             }
+            else
+            if (Mouse.current.leftButton.isPressed)
+            {
+                UpdateSelection();
+            }
+            else
             if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
                 ApplySelection();
             }
         }
 
+        private void InitSelection()
+        {
+            selectedUnits.ForEach(unit => unit.Deselect());
+            selectedUnits.Clear();
+            selectionFrame.gameObject.SetActive(true);
+            startSelectionPosition = Mouse.current.position.ReadValue();
+        }
+
+        private void UpdateSelection()
+        {
+            var mousePos = Mouse.current.position.ReadValue();
+            var width = mousePos.x - startSelectionPosition.x;
+            var height = mousePos.y - startSelectionPosition.y;
+            selectionFrame.sizeDelta = new Vector2(Mathf.Abs(width), Mathf.Abs(height));
+            selectionFrame.anchoredPosition = startSelectionPosition + new Vector2(width / 2, height / 2);
+        }
+
         private void ApplySelection()
         {
+            selectionFrame.gameObject.SetActive(false);
             if (!hasAuthority) return;
 
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
