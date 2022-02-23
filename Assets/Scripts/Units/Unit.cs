@@ -8,11 +8,11 @@ namespace Units
     public class Unit : NetworkBehaviour
     {
         [SerializeField]
-        private GameObject _selectionUI;
+        private GameObject selectionUI;
 
-        private UnitMovement _unitMovement;
+        private UnitMovement unitMovement;
 
-        public UnitMovement GetUnitMovement { get => _unitMovement; }
+        public UnitMovement GetUnitMovement { get => unitMovement; }
 
         public static event Action<Unit> OnServerUnitSpawned;
         public static event Action<Unit> OnServerUnitDrop;
@@ -21,7 +21,7 @@ namespace Units
 
         private void Awake()
         {
-            _unitMovement = GetComponent<UnitMovement>();
+            unitMovement = GetComponent<UnitMovement>();
         }
 
         #region Server
@@ -59,14 +59,14 @@ namespace Units
         public void Select()
         {
             if (!hasAuthority) return;
-            _selectionUI.SetActive(true);
+            selectionUI.SetActive(true);
         }
 
         [Client]
         public void Deselect()
         {
             if (!hasAuthority) return;
-            _selectionUI.SetActive(false);
+            selectionUI.SetActive(false);
         }
         #endregion
     }

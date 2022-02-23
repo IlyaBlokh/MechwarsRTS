@@ -7,12 +7,12 @@ namespace Units
     [RequireComponent(typeof(UnitSelectionHandler))]
     public class UnitCommandHandler : NetworkBehaviour
     {
-        private UnitSelectionHandler _unitSelectionHandler;
-        private Camera _mainCamera;
+        private UnitSelectionHandler unitSelectionHandler;
+        private Camera mainCamera;
         private void Awake()
         {
-            _unitSelectionHandler = GetComponent<UnitSelectionHandler>();
-            _mainCamera = Camera.main;
+            unitSelectionHandler = GetComponent<UnitSelectionHandler>();
+            mainCamera = Camera.main;
         }
 
         #region Client
@@ -23,11 +23,11 @@ namespace Units
 
             if (!Mouse.current.rightButton.wasPressedThisFrame) return;
 
-            Ray ray = _mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _unitSelectionHandler.LayerMask)) return;
+            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, unitSelectionHandler.LayerMask)) return;
 
-            _unitSelectionHandler.SelectedUnits.ForEach(unit =>
+            unitSelectionHandler.SelectedUnits.ForEach(unit =>
             {
                 unit.GetUnitMovement.CmdMove(hit.point);
             });

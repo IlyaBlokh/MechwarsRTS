@@ -7,11 +7,11 @@ namespace Units
     [RequireComponent(typeof(NavMeshAgent))]
     public class UnitMovement : NetworkBehaviour
     {
-        private NavMeshAgent _navMeshAgent;
+        private NavMeshAgent navMeshAgent;
 
         private void Awake()
         {
-            _navMeshAgent = GetComponent<NavMeshAgent>();
+            navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
         #region Server
@@ -20,7 +20,7 @@ namespace Units
         {
             if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas)) return;
 
-            _navMeshAgent.SetDestination(hit.position);
+            navMeshAgent.SetDestination(hit.position);
         }
         #endregion
     }

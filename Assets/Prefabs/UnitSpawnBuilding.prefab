@@ -79,8 +79,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  _laserTankUnitPrefab: {fileID: 4602448807687661761, guid: 106a30b32048bfd4ca1500dc32abc8c0, type: 3}
-  _spawnPoint: {fileID: 6888819980400578597}
+  laserTankUnitPrefab: {fileID: 4602448807687661761, guid: 106a30b32048bfd4ca1500dc32abc8c0, type: 3}
+  spawnPoint: {fileID: 6888819980400578597}
 --- !u!1 &4886900403442946831
 GameObject:
   m_ObjectHideFlags: 0
