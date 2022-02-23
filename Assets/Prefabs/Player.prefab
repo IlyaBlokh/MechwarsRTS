@@ -63,6 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3d64dd0aec9ef4589f793a2cb2b08e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  units: []
 --- !u!114 &-2100343785209904143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  _layerMask:
+  layerMask:
     serializedVersion: 2
     m_Bits: 1
 --- !u!114 &-5002882202504849333
