@@ -11,7 +11,7 @@ namespace Units
     {
         [SerializeField]
         private LayerMask layerMask;
-
+        [SerializeField]
         private List<Unit> selectedUnits = new List<Unit>();
         private Camera mainCamera;
 
