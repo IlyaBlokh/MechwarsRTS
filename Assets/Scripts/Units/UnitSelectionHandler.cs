@@ -57,8 +57,11 @@ namespace Units
 
         private void InitSelection()
         {
-            selectedUnits.ForEach(unit => unit.Deselect());
-            selectedUnits.Clear();
+            if (!Keyboard.current.leftShiftKey.isPressed)
+            {
+                selectedUnits.ForEach(unit => unit.Deselect());
+                selectedUnits.Clear();
+            }
             selectionFrame.gameObject.SetActive(true);
             startSelectionPosition = Mouse.current.position.ReadValue();
             UpdateSelection();
@@ -94,6 +97,7 @@ namespace Units
                 Vector2 leftBottomCorner = selectionFrame.anchoredPosition - selectionFrame.sizeDelta / 2;
                 Vector2 rightTopCorner = selectionFrame.anchoredPosition + selectionFrame.sizeDelta / 2;
                 player.Units.ForEach(unit => {
+                    if (selectedUnits.Contains(unit)) return;
                     var screenPosition = mainCamera.WorldToScreenPoint(unit.transform.position);
                     if (screenPosition.x > leftBottomCorner.x &&
                         screenPosition.x < rightTopCorner.x &&
