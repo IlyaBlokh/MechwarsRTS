@@ -9,12 +9,22 @@ namespace Units
     {
         private NavMeshAgent navMeshAgent;
 
+        #region Server
+
+        [ServerCallback]
         private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
-        #region Server
+        [ServerCallback]
+        private void Update()
+        {
+            if (!navMeshAgent.hasPath) return;
+            if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) return;
+            navMeshAgent.ResetPath();
+        }
+
         [Command]
         public void CmdMove(Vector3 destination)
         {
