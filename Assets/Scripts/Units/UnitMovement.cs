@@ -26,10 +26,10 @@ namespace Units
         }
 
         [Command]
-        public void CmdMove(Vector3 destination)
+        public void CmdTryMove(Vector3 destination)
         {
-            if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas)) return;
-
+            if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas))
+                return;
             navMeshAgent.SetDestination(hit.position);
         }
         #endregion

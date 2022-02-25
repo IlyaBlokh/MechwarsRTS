@@ -1,6 +1,7 @@
 using UnityEngine;
 using Mirror;
 using UnityEngine.InputSystem;
+using Combat;
 
 namespace Units
 {
@@ -29,7 +30,16 @@ namespace Units
 
             unitSelectionHandler.SelectedUnits.ForEach(unit =>
             {
-                unit.GetUnitMovement.CmdMove(hit.point);
+                if (hit.collider.TryGetComponent(out Targetable targetable))
+                {
+                    if (!targetable.hasAuthority)
+                    {
+                        unit.GetUnitTargeter.CmdSetTarget(targetable);
+                        return;
+                    }
+                }
+                unit.GetUnitTargeter.ClearTarget();
+                unit.GetUnitMovement.CmdTryMove(hit.point);
             });
         }
 

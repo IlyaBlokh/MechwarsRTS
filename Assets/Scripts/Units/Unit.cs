@@ -1,3 +1,4 @@
+using Combat;
 using Mirror;
 using System;
 using UnityEngine;
@@ -5,14 +6,17 @@ using UnityEngine;
 namespace Units
 {
     [RequireComponent(typeof(UnitMovement))]
+    [RequireComponent(typeof(Targeter))]
     public class Unit : NetworkBehaviour
     {
         [SerializeField]
         private GameObject selectionUI;
 
         private UnitMovement unitMovement;
+        private Targeter unitTargeter;
 
         public UnitMovement GetUnitMovement { get => unitMovement; }
+        public Targeter GetUnitTargeter { get => unitTargeter; }
 
         public static event Action<Unit> OnServerUnitSpawned;
         public static event Action<Unit> OnServerUnitDrop;
@@ -22,6 +26,7 @@ namespace Units
         private void Awake()
         {
             unitMovement = GetComponent<UnitMovement>();
+            unitTargeter = GetComponent<Targeter>();
         }
 
         #region Server

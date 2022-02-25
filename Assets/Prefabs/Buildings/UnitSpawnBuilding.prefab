@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1293373513607732460}
   - component: {fileID: 7517437166982851098}
   - component: {fileID: 6329988106936313095}
+  - component: {fileID: -8615930494500286356}
   m_Layer: 0
   m_Name: UnitSpawnBuilding
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MonoBehaviour:
   syncInterval: 0.1
   laserTankUnitPrefab: {fileID: 4602448807687661761, guid: 106a30b32048bfd4ca1500dc32abc8c0, type: 3}
   spawnPoint: {fileID: 6888819980400578597}
+--- !u!114 &-8615930494500286356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927270660119224144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1a5b08ddd7a4840b138833f3e63238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &4886900403442946831
 GameObject:
   m_ObjectHideFlags: 0

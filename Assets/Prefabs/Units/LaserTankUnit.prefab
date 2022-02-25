@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: -6091353353621496465}
   - component: {fileID: 3174502246629458092}
   - component: {fileID: 4272264293862322840}
+  - component: {fileID: 269321601918715128}
+  - component: {fileID: 4966610205524004995}
   m_Layer: 0
   m_Name: LaserTankUnit
   m_TagString: Untagged
@@ -230,6 +232,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.92, y: 2, z: 3.15}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &269321601918715128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602448807687661761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b881549f398c6f4393b3d6da477b8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  target: {fileID: 0}
+--- !u!114 &4966610205524004995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602448807687661761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1a5b08ddd7a4840b138833f3e63238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1001 &4602448808343116344
 PrefabInstance:
   m_ObjectHideFlags: 0
