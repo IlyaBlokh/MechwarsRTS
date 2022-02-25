@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  chaseStopDistance: 15
 --- !u!114 &-6091353353621496465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +247,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  target: {fileID: 0}
 --- !u!114 &4966610205524004995
 MonoBehaviour:
   m_ObjectHideFlags: 0

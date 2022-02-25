@@ -9,6 +9,8 @@ namespace Combat
     {
         private Targetable target;
 
+        public Targetable Target { get => target; }
+
         #region Server
         [Command]
         public void CmdSetTarget(Targetable target)
