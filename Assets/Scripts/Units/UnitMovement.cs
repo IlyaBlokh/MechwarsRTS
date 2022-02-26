@@ -29,7 +29,7 @@ namespace Units
         {
             if (targeter.Target != null)
             {
-                if ((transform.position - targeter.Target.transform.position).sqrMagnitude > Mathf.Pow(chaseStopDistance, 2))
+                if (Utils.IsDistanceGreater(transform.position, targeter.Target.transform.position, chaseStopDistance))
                 {
                     navMeshAgent.SetDestination(targeter.Target.transform.position);
                 }
@@ -50,6 +50,7 @@ namespace Units
         {
             if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas))
                 return;
+            targeter.ClearTarget();
             navMeshAgent.SetDestination(hit.position);
         }
         #endregion

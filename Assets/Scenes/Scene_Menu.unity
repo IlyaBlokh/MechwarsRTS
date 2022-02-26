@@ -355,20 +355,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9075657573374731918, guid: a922fae436906c8478c4535a04706d89, type: 3}
-      propertyPath: onlineScene
-      value: Assets/Scenes/Scene_Map_01.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075657573374731918, guid: a922fae436906c8478c4535a04706d89, type: 3}
-      propertyPath: offlineScene
-      value: Assets/Scenes/Scene_Menu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075657573374731918, guid: a922fae436906c8478c4535a04706d89, type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9075657573374731918, guid: a922fae436906c8478c4535a04706d89, type: 3}
-      propertyPath: spawnPrefabs.Array.data[2]
+      propertyPath: spawnPrefabs.Array.data[3]
       value: 
-      objectReference: {fileID: 1838204384031440668, guid: 3034be05d1fb71b439d8b6b17e4e16d2, type: 3}
+      objectReference: {fileID: 7334291784326533344, guid: 79ac11e9f5e81b54ebd3aa59eed5b21b, type: 3}
+    - target: {fileID: 9075657573374731918, guid: a922fae436906c8478c4535a04706d89, type: 3}
+      propertyPath: spawnPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 7334291784326533344, guid: 79ac11e9f5e81b54ebd3aa59eed5b21b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a922fae436906c8478c4535a04706d89, type: 3}

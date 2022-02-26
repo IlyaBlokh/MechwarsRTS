@@ -6,9 +6,6 @@ using UnityEngine;
 public class RTSPlayer : NetworkBehaviour
 {
     [SerializeField]
-    private GameObject unitCommandHandlerPrefab;
-
-    [SerializeField]
     private List<Unit> units = new List<Unit>();
 
     private UnitCommandHandler unitCommandHandler;
@@ -48,9 +45,6 @@ public class RTSPlayer : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        var unitCommandHandlerObject = Instantiate(unitCommandHandlerPrefab, transform);
-        unitCommandHandler = unitCommandHandlerObject.GetComponent<UnitCommandHandler>();
-        NetworkServer.Spawn(unitCommandHandlerObject, connectionToClient);
         if (isClientOnly)
         {
             Unit.OnAuthorityUnitSpawned += AuthorityHandleUnitSpawn;

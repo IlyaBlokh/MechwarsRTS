@@ -38,7 +38,6 @@ namespace Units
                         return;
                     }
                 }
-                unit.GetUnitTargeter.ClearTarget();
                 unit.GetUnitMovement.CmdTryMove(hit.point);
             });
         }

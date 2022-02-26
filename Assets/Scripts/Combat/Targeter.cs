@@ -8,6 +8,8 @@ namespace Combat
     public class Targeter : NetworkBehaviour
     {
         [SerializeField]
+        private List<Gun> guns = new List<Gun>();
+        [SerializeField]
         private float rotationSpeed = 20.0f;
 
         private Targetable target;
@@ -31,12 +33,14 @@ namespace Combat
         public void CmdSetTarget(Targetable target)
         {
             this.target = target;
+            guns.ForEach(gun => gun.Target = target);
         }
 
         [Server]
         public void ClearTarget()
         {
             target = null;
+            guns.ForEach(gun => gun.Target = null);
         }
         #endregion
     }
