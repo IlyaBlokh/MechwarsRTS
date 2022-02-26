@@ -132,6 +132,7 @@ MonoBehaviour:
   syncInterval: 0.1
   velocity: 15
   lifetimeSeconds: 5
+  damageToDeal: 10
 --- !u!54 &7551754580653743122
 Rigidbody:
   m_ObjectHideFlags: 0

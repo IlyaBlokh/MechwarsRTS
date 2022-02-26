@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 269321601918715128}
   - component: {fileID: 4966610205524004995}
   - component: {fileID: 7938737317716031079}
+  - component: {fileID: -7828757085860908721}
   m_Layer: 0
   m_Name: LaserTankUnit
   m_TagString: Untagged
@@ -284,6 +285,21 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7334291784326533344, guid: 79ac11e9f5e81b54ebd3aa59eed5b21b, type: 3}
   shotsPerSecond: 2
   fireRange: 20
+--- !u!114 &-7828757085860908721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602448807687661761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fecc9795bea4fa43877a5e6ce2475a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  maxHealth: 100
 --- !u!1 &7755266974287438083
 GameObject:
   m_ObjectHideFlags: 0

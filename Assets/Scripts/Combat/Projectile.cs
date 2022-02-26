@@ -12,6 +12,8 @@ namespace Combat
         private float velocity;
         [SerializeField]
         private float lifetimeSeconds;
+        [SerializeField]
+        private float damageToDeal;
 
         private Rigidbody rb;
 
@@ -28,6 +30,22 @@ namespace Combat
         public override void OnStartServer()
         {
             Invoke(nameof(DestroyProjectile), lifetimeSeconds);
+        }
+
+        [ServerCallback]
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.TryGetComponent(out NetworkIdentity networkIdentity)) 
+                return;
+
+            if (networkIdentity.connectionToClient == connectionToClient)
+                return;
+
+            if (!other.TryGetComponent(out Damageable damageable))
+                return;
+
+            damageable.ApplyDamage(damageToDeal);
+            DestroyProjectile();
         }
 
         [Server]
