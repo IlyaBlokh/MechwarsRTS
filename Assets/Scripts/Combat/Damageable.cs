@@ -1,12 +1,11 @@
 using Mirror;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Combat
 {
-    public class Damageable : NetworkBehaviour
+    public class Damageable : NetworkBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField]
         private float maxHealth;
@@ -16,6 +15,8 @@ namespace Combat
 
         public event Action OnServerDied;
         public event Action<float, float> OnClientHealthUpdated;
+        public event Action OnClientFocused;
+        public event Action OnClientUnfocused;
 
         #region Server
         public override void OnStartServer()
@@ -39,6 +40,16 @@ namespace Combat
         private void HandleHealthUpdate(float oldValue, float newValue)
         {
             OnClientHealthUpdated?.Invoke(newValue, maxHealth);
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            OnClientFocused?.Invoke();
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            OnClientUnfocused?.Invoke();
         }
         #endregion
     }

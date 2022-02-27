@@ -27,10 +27,9 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 1}
-  m_Children:
-  - {fileID: 2621600177148691643}
+  m_Children: []
   m_Father: {fileID: 4602448807687661763}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &7182198076395369051
 SpriteRenderer:
@@ -121,6 +120,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4059317434476887507}
+  - {fileID: 2621600177148691643}
   - {fileID: 3053536285573310528}
   - {fileID: 4082424462183920992}
   m_Father: {fileID: 0}
@@ -329,7 +329,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4602448807687661763}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4602448808343116344
 PrefabInstance:
@@ -398,7 +398,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3053536285573310528}
+    m_TransformParent: {fileID: 4602448807687661763}
     m_Modifications:
     - target: {fileID: 4117145359651639828, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: damageable
@@ -414,7 +414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -442,11 +442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.28571427
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.28571418
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -458,15 +458,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_LocalRotation.y
@@ -482,7 +482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 5.0000005
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -498,6 +498,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281578, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911032430101281579, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911032430101281579, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7911032430101281588, guid: a765556b1dc8e6441aae2749df79989c, type: 3}

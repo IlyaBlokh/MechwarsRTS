@@ -1,6 +1,5 @@
 using Combat;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI
@@ -17,16 +16,35 @@ namespace UI
         private void Awake()
         {
             damageable.OnClientHealthUpdated += UpdateUI;
+            damageable.OnClientFocused += ShowUI;
+            damageable.OnClientUnfocused += HideUI;
+        }
+
+        private void Start()
+        {
+            HideUI();
         }
 
         private void OnDestroy()
         {
             damageable.OnClientHealthUpdated -= UpdateUI;
+            damageable.OnClientFocused -= ShowUI;
+            damageable.OnClientUnfocused -= HideUI;
         }
 
         private void UpdateUI(float value, float maxValue)
         {
             healthBar.fillAmount = value / maxValue;
+        }
+
+        private void ShowUI()
+        {
+            parent.SetActive(true);
+        }
+
+        private void HideUI()
+        {
+            parent.SetActive(false);
         }
     }
 }
