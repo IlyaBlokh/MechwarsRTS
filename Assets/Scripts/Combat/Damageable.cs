@@ -11,10 +11,13 @@ namespace Combat
         [SerializeField]
         private float maxHealth;
 
+        [SyncVar(hook = nameof(HandleHealthUpdate))]
         private float currentHealth;
 
-        public Action OnServerDied;
+        public event Action OnServerDied;
+        public event Action<float, float> OnClientHealthUpdated;
 
+        #region Server
         public override void OnStartServer()
         {
             currentHealth = maxHealth;
@@ -31,5 +34,12 @@ namespace Combat
                 Debug.Log($"{gameObject.name} died");
             }
         }
+        #endregion
+        #region Client
+        private void HandleHealthUpdate(float oldValue, float newValue)
+        {
+            OnClientHealthUpdated?.Invoke(newValue, maxHealth);
+        }
+        #endregion
     }
 }
