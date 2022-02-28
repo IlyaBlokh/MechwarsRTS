@@ -13,7 +13,7 @@ namespace Combat
         [SyncVar(hook = nameof(HandleHealthUpdate))]
         private float currentHealth;
 
-        public event Action OnServerDied;
+        public event Action OnServerDestruct;
         public event Action<float, float> OnClientHealthUpdated;
         public event Action OnClientFocused;
         public event Action OnClientUnfocused;
@@ -31,7 +31,7 @@ namespace Combat
             currentHealth = Mathf.Max(0, currentHealth - damage);
             if (currentHealth == 0)
             {
-                OnServerDied?.Invoke();
+                OnServerDestruct?.Invoke();
                 Debug.Log($"{gameObject.name} died");
             }
         }

@@ -7,13 +7,15 @@ namespace Units
 {
     [RequireComponent(typeof(UnitMovement))]
     [RequireComponent(typeof(Targeter))]
-    public class Unit : NetworkBehaviour
+    [RequireComponent(typeof(Damageable))]
+    public class Unit : NetworkBehaviour, IDestructible
     {
         [SerializeField]
         private GameObject selectionUI;
 
         private UnitMovement unitMovement;
         private Targeter unitTargeter;
+        private Damageable damageable;
 
         public UnitMovement GetUnitMovement { get => unitMovement; }
         public Targeter GetUnitTargeter { get => unitTargeter; }
@@ -27,36 +29,40 @@ namespace Units
         {
             unitMovement = GetComponent<UnitMovement>();
             unitTargeter = GetComponent<Targeter>();
+            damageable = GetComponent<Damageable>();
         }
 
         #region Server
         public override void OnStartServer()
         {
-            base.OnStartServer();
             OnServerUnitSpawned?.Invoke(this);
+            damageable.OnServerDestruct += HandleDestruction;
         }
 
         public override void OnStopServer()
         {
-            base.OnStopServer();
             OnServerUnitDrop?.Invoke(this);
+            damageable.OnServerDestruct -= HandleDestruction;
+        }
+
+        [Server]
+        public void HandleDestruction()
+        {
+            NetworkServer.Destroy(gameObject);
         }
 
         #endregion
 
         #region Client
 
-        public override void OnStartClient()
+        public override void OnStartAuthority()
         {
-            base.OnStartClient();
-            if (hasAuthority && isClientOnly)
-                OnAuthorityUnitSpawned?.Invoke(this);
+            OnAuthorityUnitSpawned?.Invoke(this);
         }
 
         public override void OnStopClient()
         {
-            base.OnStopClient();
-            if (hasAuthority && isClientOnly)
+            if (hasAuthority)
                 OnAuthorityUnitDrop?.Invoke(this);
         }
 

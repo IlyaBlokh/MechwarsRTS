@@ -1,17 +1,37 @@
+using Combat;
 using Mirror;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Buildings
 {
-    public class UnitSpawnerBuilding : NetworkBehaviour, IPointerClickHandler
+    [RequireComponent(typeof(Damageable))]
+    public class UnitSpawnerBuilding : NetworkBehaviour, IPointerClickHandler, IDestructible
     {
         [SerializeField]
         private GameObject laserTankUnitPrefab;
         [SerializeField]
         private Transform spawnPoint;
 
+        private Damageable damageable;
+
+        private void Awake()
+        {
+            damageable = GetComponent<Damageable>();
+        }
+
         #region Server
+
+        public override void OnStartServer()
+        {
+            damageable.OnServerDestruct += HandleDestruction;
+        }
+
+        public override void OnStopServer()
+        {
+            damageable.OnServerDestruct -= HandleDestruction;
+        }
+
         [Command]
         private void CmdSpawnLaserTankUnit()
         {
@@ -19,6 +39,12 @@ namespace Buildings
                spawnPoint.position,
                spawnPoint.rotation);
             NetworkServer.Spawn(laserTankUnit, connectionToClient);
+        }
+
+        [Server]
+        public void HandleDestruction()
+        {
+            NetworkServer.Destroy(gameObject);
         }
         #endregion
 

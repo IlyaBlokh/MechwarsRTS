@@ -30,11 +30,17 @@ namespace Units
         private void Awake()
         {
             mainCamera = Camera.main;
+            Unit.OnAuthorityUnitDrop += AuthorityHandleUnitDrop;
         }
 
         private void Start()
         {
             player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+        }
+
+        private void OnDestroy()
+        {
+            Unit.OnAuthorityUnitDrop -= AuthorityHandleUnitDrop;
         }
 
         private void Update()
@@ -78,40 +84,52 @@ namespace Units
 
         private void ApplySelection()
         {
-            selectionFrame.gameObject.SetActive(false);
-
             if (selectionFrame.sizeDelta.magnitude < float.Epsilon)
             {
-                if (!hasAuthority) return;
-
-                Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-                if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) return;
-
-                if (!hit.collider.TryGetComponent(out Unit unit)) return;
-
-                selectedUnits.Add(unit);
-                selectedUnits.ForEach(unit => unit.Select());
+                SelectOnClick();
             }
             else
             {
                 Vector2 leftBottomCorner = selectionFrame.anchoredPosition - selectionFrame.sizeDelta / 2;
                 Vector2 rightTopCorner = selectionFrame.anchoredPosition + selectionFrame.sizeDelta / 2;
-                player.Units.ForEach(unit => {
-                    if (selectedUnits.Contains(unit)) return;
-                    var screenPosition = mainCamera.WorldToScreenPoint(unit.transform.position);
-                    if (screenPosition.x > leftBottomCorner.x &&
-                        screenPosition.x < rightTopCorner.x &&
-                        screenPosition.y > leftBottomCorner.y &&
-                        screenPosition.y < rightTopCorner.y)
-                    {
-                        selectedUnits.Add(unit);
-                        unit.Select();
-                        //selectedUnits.ForEach(unit => unit.Select());
-                    }
-                });
+                SelectInArea(leftBottomCorner, rightTopCorner);
             }
+            selectionFrame.gameObject.SetActive(false);
         }
 
+        private void SelectOnClick()
+        {
+            if (!hasAuthority) return;
+
+            Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) return;
+
+            if (!hit.collider.TryGetComponent(out Unit unit)) return;
+
+            selectedUnits.Add(unit);
+            selectedUnits.ForEach(unit => unit.Select());
+        }
+
+        private void SelectInArea(Vector2 leftBottomCorner, Vector2 rightTopCorner)
+        {
+            player.Units.ForEach(unit => {
+                if (selectedUnits.Contains(unit)) return;
+                var screenPosition = mainCamera.WorldToScreenPoint(unit.transform.position);
+                if (screenPosition.x > leftBottomCorner.x &&
+                    screenPosition.x < rightTopCorner.x &&
+                    screenPosition.y > leftBottomCorner.y &&
+                    screenPosition.y < rightTopCorner.y)
+                {
+                    selectedUnits.Add(unit);
+                    unit.Select();
+                }
+            });
+        }
+
+        private void AuthorityHandleUnitDrop(Unit unit)
+        {
+            selectedUnits.Remove(unit);
+        }
         #endregion
     }
 }
