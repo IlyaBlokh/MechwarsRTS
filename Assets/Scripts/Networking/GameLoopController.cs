@@ -10,6 +10,8 @@ namespace Networking
     public class GameLoopController : NetworkBehaviour
     {
         private List<UnitBase> bases = new List<UnitBase>();
+
+        public static Action<string> ClientGameOver;
         #region Server
 
         public override void OnStartServer()
@@ -35,12 +37,23 @@ namespace Networking
         {
             bases.Remove(baseToRemove);
             if (bases.Count > 1) return;
-            Debug.Log("Game over");
+            if (bases.Count < 1)
+            {
+                Debug.LogError("No bases left, can't define a winner");
+                return;
+            }
+            var winnerId = bases[0].connectionToClient.connectionId;
+            RPCGameOver($"Player {winnerId}");
         }
 
         #endregion
 
         #region Client
+        [ClientRpc]
+        private void RPCGameOver(string winnerName)
+        {
+            ClientGameOver?.Invoke(winnerName);
+        }
         #endregion
     }
 }
