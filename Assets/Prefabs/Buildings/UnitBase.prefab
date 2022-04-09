@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 4883102479300566191}
   - component: {fileID: 1293373513607732460}
   - component: {fileID: 7517437166982851098}
+  - component: {fileID: 5595238586067803325}
   - component: {fileID: 6329988106936313095}
   - component: {fileID: -8615930494500286356}
-  - component: {fileID: 34256631135741715}
+  - component: {fileID: 7624939725203611496}
   m_Layer: 0
-  m_Name: UnitSpawnBuilding
+  m_Name: UnitBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,6 +69,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &5595238586067803325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927270660119224144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad49ed3a7245d1d40bd2e2939b613e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!114 &6329988106936313095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
---- !u!114 &34256631135741715
+--- !u!114 &7624939725203611496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,7 +262,7 @@ PrefabInstance:
     - target: {fileID: 4117145359651639828, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: damageable
       value: 
-      objectReference: {fileID: 34256631135741715}
+      objectReference: {fileID: 7624939725203611496}
     - target: {fileID: 7911032430101281576, guid: a765556b1dc8e6441aae2749df79989c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

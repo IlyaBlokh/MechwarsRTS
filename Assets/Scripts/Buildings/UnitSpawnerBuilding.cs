@@ -5,31 +5,30 @@ using UnityEngine.EventSystems;
 
 namespace Buildings
 {
-    [RequireComponent(typeof(Damageable))]
-    public class UnitSpawnerBuilding : NetworkBehaviour, IPointerClickHandler, IDestructible
+    public class UnitSpawnerBuilding : NetworkBehaviour, IPointerClickHandler//, IDestructible
     {
         [SerializeField]
         private GameObject laserTankUnitPrefab;
         [SerializeField]
         private Transform spawnPoint;
 
-        private Damageable damageable;
+        //private Damageable damageable;
 
         private void Awake()
         {
-            damageable = GetComponent<Damageable>();
+            //damageable = GetComponent<Damageable>();
         }
 
         #region Server
 
         public override void OnStartServer()
         {
-            damageable.OnServerDestruct += HandleDestruction;
+            //damageable.OnServerDestruct += HandleDestruction;
         }
 
         public override void OnStopServer()
         {
-            damageable.OnServerDestruct -= HandleDestruction;
+            //damageable.OnServerDestruct -= HandleDestruction;
         }
 
         [Command]
@@ -41,11 +40,11 @@ namespace Buildings
             NetworkServer.Spawn(laserTankUnit, connectionToClient);
         }
 
-        [Server]
+/*        [Server]
         public void HandleDestruction()
         {
             NetworkServer.Destroy(gameObject);
-        }
+        }*/
         #endregion
 
         #region Client
