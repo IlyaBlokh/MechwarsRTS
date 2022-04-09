@@ -11,7 +11,8 @@ namespace Networking
     {
         private List<UnitBase> bases = new List<UnitBase>();
 
-        public static Action<string> ClientGameOver;
+        public static Action OnServerGameOver;
+        public static Action<string> OnClientGameOver;
         #region Server
 
         public override void OnStartServer()
@@ -44,6 +45,7 @@ namespace Networking
             }
             var winnerId = bases[0].connectionToClient.connectionId;
             RPCGameOver($"Player {winnerId}");
+            OnServerGameOver?.Invoke();
         }
 
         #endregion
@@ -52,7 +54,7 @@ namespace Networking
         [ClientRpc]
         private void RPCGameOver(string winnerName)
         {
-            ClientGameOver?.Invoke(winnerName);
+            OnClientGameOver?.Invoke(winnerName);
         }
         #endregion
     }

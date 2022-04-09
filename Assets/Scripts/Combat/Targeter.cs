@@ -1,4 +1,6 @@
 using Mirror;
+using Networking;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +20,22 @@ namespace Combat
         public Targetable Target { get => target; }
 
         #region Server
+
+        public override void OnStartServer()
+        {
+            GameLoopController.OnServerGameOver += HandleServerGameOver;
+        }
+
+        public override void OnStopServer()
+        {
+            GameLoopController.OnServerGameOver -= HandleServerGameOver;
+        }
+
+        [Server]
+        private void HandleServerGameOver()
+        {
+            ClearTarget();
+        }
 
         [ServerCallback]
         private void Update()

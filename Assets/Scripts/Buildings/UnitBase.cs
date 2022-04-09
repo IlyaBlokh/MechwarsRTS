@@ -15,6 +15,7 @@ namespace Buildings
 
         public static Action<UnitBase> OnServerBaseSpawned;
         public static Action<UnitBase> OnServerBaseDrop;
+        public static Action<int> OnServerPlayerLost;
 
         private void Awake()
         {
@@ -36,6 +37,7 @@ namespace Buildings
         [Server]
         public void HandleDestruction()
         {
+            OnServerPlayerLost?.Invoke(connectionToClient.connectionId);
             NetworkServer.Destroy(gameObject);
         }
         #endregion

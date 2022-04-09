@@ -1,5 +1,6 @@
 using Combat;
 using Mirror;
+using Networking;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,6 +17,22 @@ namespace Units
         private Targeter targeter;
 
         #region Server
+
+        public override void OnStartServer()
+        {
+            GameLoopController.OnServerGameOver += HandleServerGameOver;
+        }
+
+        public override void OnStopServer()
+        {
+            GameLoopController.OnServerGameOver -= HandleServerGameOver;
+        }
+
+        [Server]
+        private void HandleServerGameOver()
+        {
+            navMeshAgent.ResetPath();
+        }
 
         [ServerCallback]
         private void Awake()

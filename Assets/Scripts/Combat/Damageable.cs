@@ -1,3 +1,4 @@
+using Buildings;
 using Mirror;
 using System;
 using UnityEngine;
@@ -22,6 +23,19 @@ namespace Combat
         public override void OnStartServer()
         {
             currentHealth = maxHealth;
+            UnitBase.OnServerPlayerLost += ServerHandlePlayerLost;
+        }
+
+        public override void OnStopServer()
+        {
+            UnitBase.OnServerPlayerLost -= ServerHandlePlayerLost;
+        }
+
+        [Server]
+        private void ServerHandlePlayerLost(int playerID)
+        {
+            if (connectionToClient.connectionId != playerID) return;
+            ApplyDamage(currentHealth);            
         }
 
         [Server]

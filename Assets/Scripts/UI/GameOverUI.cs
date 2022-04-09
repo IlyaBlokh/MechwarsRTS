@@ -19,14 +19,14 @@ namespace UI
         private Button exitBtn;
         void Start()
         {
-            GameLoopController.ClientGameOver += ShowGameOverUI;
+            GameLoopController.OnClientGameOver += ShowGameOverUI;
             exitBtn.onClick.AddListener(ExitToLobby);
             parent.SetActive(false);
         }
 
         private void OnDestroy()
         {
-            GameLoopController.ClientGameOver -= ShowGameOverUI;
+            GameLoopController.OnClientGameOver -= ShowGameOverUI;
             exitBtn.onClick.RemoveListener(ExitToLobby);
         }
 

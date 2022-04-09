@@ -2,6 +2,8 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.InputSystem;
 using Combat;
+using Networking;
+using System;
 
 namespace Units
 {
@@ -14,6 +16,16 @@ namespace Units
         {
             unitSelectionHandler = GetComponent<UnitSelectionHandler>();
             mainCamera = Camera.main;
+        }
+
+        private void Start()
+        {
+            GameLoopController.OnClientGameOver += ClientHandleGameOver;
+        }
+
+        private void OnDestroy()
+        {
+            GameLoopController.OnClientGameOver -= ClientHandleGameOver;
         }
 
         #region Client
@@ -40,6 +52,11 @@ namespace Units
                 }
                 unit.GetUnitMovement.CmdTryMove(hit.point);
             });
+        }
+
+        private void ClientHandleGameOver(string winnerName)
+        {
+            enabled = false;
         }
 
         #endregion

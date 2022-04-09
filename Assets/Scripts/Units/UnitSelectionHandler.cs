@@ -1,4 +1,5 @@
 using Mirror;
+using Networking;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,11 +37,13 @@ namespace Units
         private void Start()
         {
             player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+            GameLoopController.OnClientGameOver += ClientHandleGameOver;
         }
 
         private void OnDestroy()
         {
             Unit.OnAuthorityUnitDrop -= AuthorityHandleUnitDrop;
+            GameLoopController.OnClientGameOver -= ClientHandleGameOver;
         }
 
         private void Update()
@@ -129,6 +132,11 @@ namespace Units
         private void AuthorityHandleUnitDrop(Unit unit)
         {
             selectedUnits.Remove(unit);
+        }
+
+        private void ClientHandleGameOver(string winnerName)
+        {
+            enabled = false;
         }
         #endregion
     }
