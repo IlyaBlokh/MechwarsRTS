@@ -1,26 +1,16 @@
-using Combat;
 using Mirror;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Buildings
 {
-    [RequireComponent(typeof(Damageable))]
-    [RequireComponent(typeof(UnitSpawnerBuilding))]
-    public class UnitBase : NetworkBehaviour, IDestructible
-    {
-        private Damageable damageable;
-
+    [RequireComponent(typeof(UnitSpawnerBehaviour))]
+    public class UnitBase : Building, IDestructible
+    { 
         public static Action<UnitBase> OnServerBaseSpawned;
         public static Action<UnitBase> OnServerBaseDrop;
         public static Action<int> OnServerPlayerLost;
 
-        private void Awake()
-        {
-            damageable = GetComponent<Damageable>();
-        }
         #region Server
         public override void OnStartServer()
         {
