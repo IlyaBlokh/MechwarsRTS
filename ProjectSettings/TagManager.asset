@@ -11,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Terrain
+  - Floor
+  - Unit
+  - Projectile
+  - Minimap
   - 
   - 
   - 

@@ -241,7 +241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  unitCommandHandlerPrefab: {fileID: 1838204384031440668, guid: 3034be05d1fb71b439d8b6b17e4e16d2, type: 3}
   units: []
 --- !u!114 &6335916018638610774
 MonoBehaviour:
@@ -260,7 +259,7 @@ MonoBehaviour:
   selectionFrame: {fileID: 6066828585959593259}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
 --- !u!114 &9135773740988107217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,3 +274,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 385

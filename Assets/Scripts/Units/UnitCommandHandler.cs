@@ -10,8 +10,11 @@ namespace Units
     [RequireComponent(typeof(UnitSelectionHandler))]
     public class UnitCommandHandler : NetworkBehaviour
     {
+        [SerializeField]
+        private LayerMask layerMask;
         private UnitSelectionHandler unitSelectionHandler;
         private Camera mainCamera;
+
         private void Awake()
         {
             unitSelectionHandler = GetComponent<UnitSelectionHandler>();
@@ -38,7 +41,7 @@ namespace Units
 
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, unitSelectionHandler.LayerMask)) return;
+            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) return;
 
             unitSelectionHandler.SelectedUnits.ForEach(unit =>
             {

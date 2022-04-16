@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6135513905843373807}
   - component: {fileID: 9180224440031823408}
   - component: {fileID: 4243096447657053425}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4645784587496998287}
   - component: {fileID: 4450898959209388953}
   - component: {fileID: 830647124695692266}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 4443109230426541297}
   - component: {fileID: 2180647601803337044}
   - component: {fileID: 4671799414098820863}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 4358798555027684097}
   - component: {fileID: 7554302279001423681}
   - component: {fileID: 3017768342137488223}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8333405613398224988}
   - component: {fileID: 2526021630487690300}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameOverUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 3937028911888016435}
   - component: {fileID: 1602530877932156186}
   - component: {fileID: 7468730394336711875}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextWinner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

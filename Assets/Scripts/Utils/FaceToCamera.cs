@@ -2,11 +2,17 @@
 
 public class FaceToCamera : MonoBehaviour
 {
+    private Camera mainCamera;
     private Quaternion targetRotation;
 
-    void Update()
+    private void Start()
     {
-        targetRotation = Quaternion.LookRotation(Camera.main.transform.forward);
+        mainCamera = Camera.main;
+    }
+
+    void LateUpdate()
+    {
+        targetRotation = Quaternion.LookRotation(mainCamera.transform.forward);
         transform.rotation = targetRotation;
     }
 }
