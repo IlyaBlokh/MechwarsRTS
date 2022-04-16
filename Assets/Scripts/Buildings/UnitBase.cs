@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Buildings
 {
-    [RequireComponent(typeof(UnitSpawnerBehaviour))]
     public class UnitBase : Building, IDestructible
     { 
         public static Action<UnitBase> OnServerBaseSpawned;

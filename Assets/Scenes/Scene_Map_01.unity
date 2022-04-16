@@ -221,6 +221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8333405613398224989, guid: 4121179df74367141b3cae3ad78764d0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4121179df74367141b3cae3ad78764d0, type: 3}
 --- !u!1 &347105120
@@ -832,3 +836,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 45, y: 130, z: 90}
+--- !u!1001 &9168670191747732199
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2872488464307223376, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 5533609120719195089, guid: dad2de904b7a73345a760755e91502e0, type: 3}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168670191911569110, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: m_Name
+      value: BuildingsUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}

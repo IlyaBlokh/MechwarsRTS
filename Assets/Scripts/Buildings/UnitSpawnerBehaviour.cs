@@ -7,7 +7,7 @@ namespace Buildings
     public class UnitSpawnerBehaviour : NetworkBehaviour, IPointerClickHandler
     {
         [SerializeField]
-        private GameObject laserTankUnitPrefab;
+        private GameObject unitToSpawnPrefab;
         [SerializeField]
         private Transform spawnPoint;
 
@@ -15,7 +15,7 @@ namespace Buildings
         [Command]
         private void CmdSpawnLaserTankUnit()
         {
-            var laserTankUnit = Instantiate(laserTankUnitPrefab,
+            var laserTankUnit = Instantiate(unitToSpawnPrefab,
                spawnPoint.position,
                spawnPoint.rotation);
             NetworkServer.Spawn(laserTankUnit, connectionToClient);

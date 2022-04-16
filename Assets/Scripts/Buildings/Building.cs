@@ -14,6 +14,7 @@ namespace Buildings
         [SerializeField] private Sprite icon;
         [SerializeField] private int id = -1;
         [SerializeField] private int price;
+        [SerializeField] private GameObject previewGameobject;
         protected Damageable damageable;
 
         public static event Action<Building> OnServerBuildingSpawned;
@@ -24,6 +25,7 @@ namespace Buildings
         public Sprite Icon { get => icon; }
         public int Id { get => id;  }
         public int Price { get => price; }
+        public GameObject PreviewGameobject { get => previewGameobject; }
 
         private void Awake()
         {
