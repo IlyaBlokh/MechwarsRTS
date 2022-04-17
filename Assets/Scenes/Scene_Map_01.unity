@@ -847,6 +847,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 5533609120719195089, guid: dad2de904b7a73345a760755e91502e0, type: 3}
+    - target: {fileID: 2872488464307223376, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
+      propertyPath: floorMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 9168670191911569109, guid: 04b6070fad93ac44488058c8b6c42bd0, type: 3}
       propertyPath: m_RootOrder
       value: 7
