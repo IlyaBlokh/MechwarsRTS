@@ -33,8 +33,6 @@ namespace UI
         private void InitNetworkClient()
         {
             NetworkClient.connection.identity.TryGetComponent(out ownerPlayer);
-            if (ownerPlayer == null)
-                Debug.LogError("Can't retrieve RTSPlayer");
         }
 
         private void Update()
@@ -73,7 +71,14 @@ namespace UI
                     buildingPreviewInstance.SetActive(true);
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    ownerPlayer.CmdTryPlaceBuilding(building.Id, hitInfo.point);
+                    if (ownerPlayer == null)
+                    {
+                        Debug.LogError("Can't retrieve RTSPlayer");
+                    }
+                    else
+                    {
+                        ownerPlayer.CmdTryPlaceBuilding(building.Id, hitInfo.point);
+                    }
                     StopPlacing();
                 }else if (Mouse.current.rightButton.wasPressedThisFrame)
                 {
