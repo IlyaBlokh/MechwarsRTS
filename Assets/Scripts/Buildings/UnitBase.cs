@@ -27,7 +27,6 @@ namespace Buildings
         public void HandleDestruction()
         {
             OnServerPlayerLost?.Invoke(connectionToClient.connectionId);
-            NetworkServer.Destroy(gameObject);
         }
         #endregion
 

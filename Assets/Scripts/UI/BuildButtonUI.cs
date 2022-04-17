@@ -1,8 +1,10 @@
 using Buildings;
 using TMPro;
+using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System;
 
 namespace UI
 {
@@ -14,6 +16,7 @@ namespace UI
         [SerializeField] private LayerMask floorMask;
 
         private Camera mainCamera;
+        private RTSPlayer ownerPlayer = null;
         private GameObject buildingPreviewInstance;
         private Ray ray;
         private bool isPlacing = false;
@@ -24,6 +27,14 @@ namespace UI
             buildButton.image.sprite = building.Icon;
             buildCost.text = building.Price.ToString();
             buildButton.onClick.AddListener(OnBuildClick);
+            RTSPlayer.OnAuthorityStarted += InitNetworkClient;
+        }
+
+        private void InitNetworkClient()
+        {
+            NetworkClient.connection.identity.TryGetComponent(out ownerPlayer);
+            if (ownerPlayer == null)
+                Debug.LogError("Can't retrieve RTSPlayer");
         }
 
         private void Update()
@@ -35,6 +46,7 @@ namespace UI
         private void OnDestroy()
         {
             buildButton.onClick.RemoveAllListeners();
+            RTSPlayer.OnAuthorityStarted -= InitNetworkClient;
         }
 
         private void OnBuildClick()
@@ -55,12 +67,13 @@ namespace UI
             ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hitInfo, floorMask))
             {
-                buildingPreviewInstance.transform.position = hitInfo.point;
+                buildingPreviewInstance.transform.position = 
+                    new Vector3(hitInfo.point.x, buildingPreviewInstance.transform.position.y, hitInfo.point.z);
                 if (!buildingPreviewInstance.activeSelf)
                     buildingPreviewInstance.SetActive(true);
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    Debug.Log("build here");
+                    ownerPlayer.CmdTryPlaceBuilding(building.Id, hitInfo.point);
                     StopPlacing();
                 }else if (Mouse.current.rightButton.wasPressedThisFrame)
                 {

@@ -46,7 +46,7 @@ namespace Combat
             if (currentHealth == 0)
             {
                 OnServerDestruct?.Invoke();
-                Debug.Log($"{gameObject.name} died");
+                NetworkServer.Destroy(gameObject);
             }
         }
         #endregion

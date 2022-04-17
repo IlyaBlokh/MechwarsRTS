@@ -1,14 +1,18 @@
 using Buildings;
+using Config;
 using Mirror;
+using System;
 using System.Collections.Generic;
 using Units;
 using UnityEngine;
 
 public class RTSPlayer : NetworkBehaviour
 {
+    [SerializeField] BuildingsConfig buildingsConfig;
     private List<Unit> units = new List<Unit>();
     private List<Building> buildings = new List<Building>();
 
+    public static event Action OnAuthorityStarted; 
     public List<Unit> Units { get => units;}
     public List<Building> Buildings { get => buildings; }
 
@@ -29,6 +33,15 @@ public class RTSPlayer : NetworkBehaviour
         Unit.OnServerUnitDrop -= ServerHandleUnitDrop;
         Building.OnServerBuildingSpawned -= ServerHandleBuildingSpawn;
         Building.OnServerBuildingDrop -= ServerHandleBuildingDrop;
+    }
+
+    [Command]
+    public void CmdTryPlaceBuilding(int buildingId, Vector3 location)
+    {
+        var buildingToPlace = buildingsConfig.Buildings.Find(b => b.Id == buildingId);
+        if (buildingToPlace == null) return;
+        var buildingInstance = Instantiate(buildingToPlace.gameObject, location, buildingToPlace.transform.rotation);
+        NetworkServer.Spawn(buildingInstance, connectionToClient);
     }
 
     private void ServerHandleUnitSpawn(Unit unit)
@@ -60,6 +73,7 @@ public class RTSPlayer : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
+        OnAuthorityStarted?.Invoke();
         if (NetworkServer.active) return;
         Unit.OnAuthorityUnitSpawned += AuthorityHandleUnitSpawn;
         Unit.OnAuthorityUnitDrop += AuthorityHandleUnitDrop;

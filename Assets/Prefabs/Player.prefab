@@ -241,7 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  units: []
+  buildingsConfig: {fileID: 11400000, guid: 43f217c886324ad4a9bbbe4fbfc3e6b6, type: 2}
 --- !u!114 &6335916018638610774
 MonoBehaviour:
   m_ObjectHideFlags: 0
