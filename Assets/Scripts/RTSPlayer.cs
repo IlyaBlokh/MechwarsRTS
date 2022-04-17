@@ -1,20 +1,30 @@
 using Buildings;
 using Config;
 using Mirror;
+using Resources;
 using System;
 using System.Collections.Generic;
 using Units;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerResources))]
 public class RTSPlayer : NetworkBehaviour
 {
     [SerializeField] BuildingsConfig buildingsConfig;
+
+    private PlayerResources playerResources;
     private List<Unit> units = new List<Unit>();
     private List<Building> buildings = new List<Building>();
 
     public static event Action OnAuthorityStarted; 
     public List<Unit> Units { get => units;}
     public List<Building> Buildings { get => buildings; }
+    public PlayerResources PlayerResources { get => playerResources; }
+
+    private void Awake()
+    {
+        playerResources = GetComponent<PlayerResources>();
+    }
 
     #region Server
     public override void OnStartServer()
