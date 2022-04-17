@@ -8,11 +8,18 @@ namespace Resources
 {
     public class PlayerResources : NetworkBehaviour
     {
+        [SerializeField] private int defaultCreditsAmount;
+
         [SyncVar(hook = nameof(ClientHandleCreditsUpdated))] 
         private int credits;
 
         public static event Action<int> OnClientCreditsUpdated;
         public int Credits { get => credits; }
+
+        private void Start()
+        {
+            credits = defaultCreditsAmount;
+        }
 
         #region Server
         [Server]
