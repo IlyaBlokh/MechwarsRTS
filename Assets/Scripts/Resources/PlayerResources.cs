@@ -13,7 +13,7 @@ namespace Resources
         [SyncVar(hook = nameof(ClientHandleCreditsUpdated))] 
         private int credits;
 
-        public static event Action<int> OnClientCreditsUpdated;
+        public event Action<int> OnClientCreditsUpdated;
         public int Credits { get => credits; }
 
         private void Start()
