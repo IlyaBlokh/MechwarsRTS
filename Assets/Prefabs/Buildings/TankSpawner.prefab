@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6972595235544098800, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8041752401322461647, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
       propertyPath: m_Name
       value: UnitQueueUI

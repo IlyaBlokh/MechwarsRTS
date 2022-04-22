@@ -26,6 +26,8 @@ namespace Buildings
         private void Start()
         {
             player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+            currentUnitsInQueue = 0;
+            spawnTimer = .0f;
         }
 
         private void Update()
@@ -37,7 +39,7 @@ namespace Buildings
 
             if (isClient)
             {
-
+                UpdateSpawnTimerUI();
             }
         }
 
@@ -90,6 +92,11 @@ namespace Buildings
         private void ClientHandleUnitsInQueue(int oldValue, int newValue)
         {
             unitQueueUI.SetUnitsInQueue(newValue);
+        }
+
+        private void UpdateSpawnTimerUI()
+        {
+            unitQueueUI.UpdateProgress(spawnTimer, spawnDuration);
         }
         #endregion
     }
