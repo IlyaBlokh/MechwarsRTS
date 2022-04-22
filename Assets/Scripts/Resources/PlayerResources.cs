@@ -27,6 +27,14 @@ namespace Resources
         {
             credits += addValue;
         }
+
+        [Server]
+        public bool TrySubstractCredits(int subValue)
+        {
+            if (credits < subValue) return false;
+            credits -= subValue;
+            return true;
+        }
         #endregion
 
         #region Client

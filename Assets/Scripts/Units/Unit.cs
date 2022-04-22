@@ -1,5 +1,6 @@
 using Combat;
 using Mirror;
+using Resources;
 using System;
 using UnityEngine;
 
@@ -8,17 +9,18 @@ namespace Units
     [RequireComponent(typeof(UnitMovement))]
     [RequireComponent(typeof(Targeter))]
     [RequireComponent(typeof(Damageable))]
-    public class Unit : NetworkBehaviour, IDestructible
+    public class Unit : NetworkBehaviour, IDestructible, IPurchaseable
     {
-        [SerializeField]
-        private GameObject selectionUI;
+        [SerializeField] private GameObject selectionUI;
+        [SerializeField] private int costInCredits;
 
         private UnitMovement unitMovement;
         private Targeter unitTargeter;
         private Damageable damageable;
 
-        public UnitMovement GetUnitMovement { get => unitMovement; }
-        public Targeter GetUnitTargeter { get => unitTargeter; }
+        public UnitMovement GetUnitMovement => unitMovement;
+        public Targeter GetUnitTargeter => unitTargeter;
+        public int GetCreditsCostValue() => costInCredits;
 
         public static event Action<Unit> OnServerUnitSpawned;
         public static event Action<Unit> OnServerUnitDrop;

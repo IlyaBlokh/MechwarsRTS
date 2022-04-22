@@ -244,8 +244,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.4
-  m_fontSizeBase: 0.4
+  m_fontSize: 0.8
+  m_fontSizeBase: 0.8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 3993018327757927185}
   - component: {fileID: 3803106820598307753}
   - component: {fileID: 3102946337839564201}
+  - component: {fileID: 3906778014188063357}
   m_Layer: 0
   m_Name: UnitQueueUI
   m_TagString: Untagged
@@ -435,3 +436,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   queueProgressImage: {fileID: 6972595235544098800}
   queueText: {fileID: 4018801761999542254}
+--- !u!114 &3906778014188063357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8041752401322461647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9029ee8f6b5f5c64c9a2d162b379f7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

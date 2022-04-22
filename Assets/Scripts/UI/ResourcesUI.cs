@@ -20,7 +20,7 @@ namespace UI
             player.PlayerResources.OnClientCreditsUpdated -= DisplayCreditsAmount;
         }
 
-        public void InitPlayer()
+        private void InitPlayer()
         {
             player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
             player.PlayerResources.OnClientCreditsUpdated += DisplayCreditsAmount;

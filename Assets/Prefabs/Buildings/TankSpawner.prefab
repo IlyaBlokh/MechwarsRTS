@@ -51,8 +51,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.15
-  m_Height: 5
+  m_Radius: 1.5
+  m_Height: 6
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!208 &6735270353187528163
@@ -149,8 +149,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  unitToSpawnPrefab: {fileID: 4602448807687661761, guid: 106a30b32048bfd4ca1500dc32abc8c0, type: 3}
+  unitQueueUI: {fileID: 8718662075327015756}
+  unitToSpawnPrefab: {fileID: 3174502246629458092, guid: 106a30b32048bfd4ca1500dc32abc8c0, type: 3}
   spawnPoint: {fileID: 7557893336436621985}
+  maxQueueLength: 5
+  spawnDuration: 5.75
+  spawnMoveRange: 7
 --- !u!1 &3011065884681559646
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3011065884681559646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 4}
+  m_LocalPosition: {x: 2, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1698194766490775765}
@@ -298,11 +302,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3993018327757927185, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3993018327757927185, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3993018327757927185, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -338,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3993018327757927185, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3993018327757927185, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -363,6 +367,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3993018327757927185, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
   m_PrefabInstance: {fileID: 6048626459819355877}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8718662075327015756 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3102946337839564201, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
+  m_PrefabInstance: {fileID: 6048626459819355877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e64524b32805e54087bb636fadbb968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7481597410116194371
 PrefabInstance:
   m_ObjectHideFlags: 0

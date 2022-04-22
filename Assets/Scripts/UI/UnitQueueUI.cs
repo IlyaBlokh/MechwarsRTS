@@ -10,5 +10,10 @@ namespace UI
     {
         [SerializeField] private Image queueProgressImage;
         [SerializeField] private TMP_Text queueText;
+
+        public void SetUnitsInQueue(int unitsAmount)
+        {
+            queueText.text = unitsAmount.ToString();
+        }
     }
 }

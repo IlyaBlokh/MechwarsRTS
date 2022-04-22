@@ -62,13 +62,19 @@ namespace Units
             navMeshAgent.ResetPath();
         }
 
-        [Command]
-        public void CmdTryMove(Vector3 destination)
+        [Server]
+        public void ServerTryMove(Vector3 destination)
         {
             if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas))
                 return;
             targeter.ClearTarget();
             navMeshAgent.SetDestination(hit.position);
+        }
+
+        [Command]
+        public void CmdTryMove(Vector3 destination)
+        {
+            ServerTryMove(destination);
         }
         #endregion
     }

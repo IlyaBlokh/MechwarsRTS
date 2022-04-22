@@ -224,6 +224,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   selectionUI: {fileID: 1893310580034153084}
+  costInCredits: 20
 --- !u!65 &4272264293862322840
 BoxCollider:
   m_ObjectHideFlags: 0
