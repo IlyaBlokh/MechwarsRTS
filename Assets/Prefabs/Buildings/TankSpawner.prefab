@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1698194766490775765}
-  - component: {fileID: 4458812406388946001}
+  - component: {fileID: 4378785639091200865}
   - component: {fileID: 6735270353187528163}
   - component: {fileID: 2400345538532330975}
   - component: {fileID: 2624089799757331438}
@@ -41,8 +41,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4458812406388946001
-CapsuleCollider:
+--- !u!65 &4378785639091200865
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51,9 +51,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.5
-  m_Height: 6
-  m_Direction: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 4, z: 2}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!208 &6735270353187528163
 NavMeshObstacle:
@@ -354,6 +353,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3993018327757927185, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018801761999542254, guid: f7fe0f698cd58fa479858432b575846d, type: 3}
+      propertyPath: m_text
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6972595235544098800, guid: f7fe0f698cd58fa479858432b575846d, type: 3}

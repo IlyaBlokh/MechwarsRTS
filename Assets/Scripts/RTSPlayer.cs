@@ -8,22 +8,22 @@ using Units;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerResources))]
+[RequireComponent(typeof(PlayerBuildingPlacer))]
 public class RTSPlayer : NetworkBehaviour
 {
-    [SerializeField] BuildingsConfig buildingsConfig;
-
     private PlayerResources playerResources;
+    private PlayerBuildingPlacer playerBuildingPlacer;
     private List<Unit> units = new List<Unit>();
-    private List<Building> buildings = new List<Building>();
 
     public static event Action OnAuthorityStarted; 
     public List<Unit> Units { get => units;}
-    public List<Building> Buildings { get => buildings; }
     public PlayerResources PlayerResources { get => playerResources; }
+    public PlayerBuildingPlacer PlayerBuildingPlacer { get => playerBuildingPlacer;  }
 
     private void Awake()
     {
         playerResources = GetComponent<PlayerResources>();
+        playerBuildingPlacer = GetComponent<PlayerBuildingPlacer>();
     }
 
     #region Server
@@ -45,15 +45,6 @@ public class RTSPlayer : NetworkBehaviour
         Building.OnServerBuildingDrop -= ServerHandleBuildingDrop;
     }
 
-    [Command]
-    public void CmdTryPlaceBuilding(int buildingId, Vector3 location)
-    {
-        var buildingToPlace = buildingsConfig.Buildings.Find(b => b.Id == buildingId);
-        if (buildingToPlace == null) return;
-        var buildingInstance = Instantiate(buildingToPlace.gameObject, location, buildingToPlace.transform.rotation);
-        NetworkServer.Spawn(buildingInstance, connectionToClient);
-    }
-
     private void ServerHandleUnitSpawn(Unit unit)
     {
         if (unit.connectionToClient.connectionId != connectionToClient.connectionId) return;
@@ -69,13 +60,13 @@ public class RTSPlayer : NetworkBehaviour
     private void ServerHandleBuildingSpawn(Building building)
     {
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
-        buildings.Add(building);
+        playerBuildingPlacer.Buildings.Add(building);
     }
 
     private void ServerHandleBuildingDrop(Building building)
     {
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
-        buildings.Remove(building);
+        playerBuildingPlacer.Buildings.Remove(building);
     }
     #endregion
 
@@ -114,12 +105,12 @@ public class RTSPlayer : NetworkBehaviour
 
     private void AuthorityHandleBuildingSpawn(Building building)
     {
-        buildings.Add(building);
+        playerBuildingPlacer.Buildings.Add(building);
     }
 
     private void AuthorityHandleBuildingDrop(Building building)
     {
-        buildings.Remove(building);
+        playerBuildingPlacer.Buildings.Remove(building);
     }
     #endregion
 }

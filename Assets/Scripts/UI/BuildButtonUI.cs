@@ -18,6 +18,8 @@ namespace UI
         private Camera mainCamera;
         private RTSPlayer ownerPlayer = null;
         private GameObject buildingPreviewInstance;
+        private Renderer buildingPreviewRenderer;
+        private Color rendererColor;
         private Ray ray;
         private bool isPlacing = false;
 
@@ -55,8 +57,10 @@ namespace UI
 
         private void StartPlacing()
         {
+            if (ownerPlayer.PlayerResources.Credits < building.Price) return;
             isPlacing = true;
             buildingPreviewInstance = Instantiate(building.PreviewGameobject);
+            buildingPreviewRenderer = buildingPreviewInstance.GetComponent<Renderer>();
             buildingPreviewInstance.SetActive(false);
         }
 
@@ -69,6 +73,11 @@ namespace UI
                     new Vector3(hitInfo.point.x, buildingPreviewInstance.transform.position.y, hitInfo.point.z);
                 if (!buildingPreviewInstance.activeSelf)
                     buildingPreviewInstance.SetActive(true);
+
+                rendererColor = ownerPlayer.PlayerBuildingPlacer.IsPlacingAllowed(building.GetComponent<BoxCollider>(), hitInfo.point) ?
+                    Color.green : Color.red;
+                buildingPreviewRenderer.material.SetColor("_BaseColor", rendererColor);
+
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
                     if (ownerPlayer == null)
@@ -77,7 +86,7 @@ namespace UI
                     }
                     else
                     {
-                        ownerPlayer.CmdTryPlaceBuilding(building.Id, hitInfo.point);
+                        ownerPlayer.PlayerBuildingPlacer.CmdTryPlaceBuilding(building.Id, hitInfo.point);
                     }
                     StopPlacing();
                 }else if (Mouse.current.rightButton.wasPressedThisFrame)

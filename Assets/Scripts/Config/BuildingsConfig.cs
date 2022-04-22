@@ -9,6 +9,10 @@ namespace Config
     public class BuildingsConfig : ScriptableObject
     {
         [SerializeField] private List<Building> buildings;
+        [SerializeField] private LayerMask buildingLockedLayers;
+        [SerializeField] private float buildRange;
         public List<Building> Buildings { get => buildings; }
+        public LayerMask BuildingLockedLayers { get => buildingLockedLayers; }
+        public float BuildRange { get => buildRange; }
     }
 }

@@ -13,12 +13,14 @@ namespace Buildings
         #region Server
         public override void OnStartServer()
         {
+            base.OnStartServer();
             damageable.OnServerDestruct += HandleDestruction;
             OnServerBaseSpawned?.Invoke(this);
         }
 
         public override void OnStopServer()
         {
+            base.OnStopServer();
             damageable.OnServerDestruct -= HandleDestruction;
             OnServerBaseDrop?.Invoke(this);
         }
