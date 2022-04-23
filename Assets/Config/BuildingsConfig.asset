@@ -18,4 +18,4 @@ MonoBehaviour:
   buildingLockedLayers:
     serializedVersion: 2
     m_Bits: 321
-  buildRange: 15
+  buildRange: 35

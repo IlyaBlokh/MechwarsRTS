@@ -63,10 +63,9 @@ namespace Buildings
         [Server]
         private void ServerSpawnUnit()
         {
-            var unit = Instantiate(unitToSpawnPrefab);
+            var unit = Instantiate(unitToSpawnPrefab, spawnPoint.position, unitToSpawnPrefab.transform.rotation);
             NetworkServer.Spawn(unit.gameObject, connectionToClient);
-            var destinationPoint = UnityEngine.Random.insideUnitSphere * spawnMoveRange;
-            destinationPoint.y = transform.position.y;
+            var destinationPoint = unit.GetUnitMovement.ServerFindAvailableDestination(spawnPoint.position, spawnMoveRange);
             unit.GetUnitMovement.ServerTryMove(destinationPoint);
         }
 

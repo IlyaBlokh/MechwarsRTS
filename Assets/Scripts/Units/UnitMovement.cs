@@ -71,6 +71,24 @@ namespace Units
             navMeshAgent.SetDestination(hit.position);
         }
 
+        [Server]
+        public Vector3 ServerFindAvailableDestination(Vector3 origin, float range)
+        {
+            Vector3 result;
+            int maxAttempts = 100;
+            for (int i = 0; i< maxAttempts; i++)
+            {
+                result = origin + Random.insideUnitSphere * range;
+                result.y = origin.y;
+                if (NavMesh.SamplePosition(result, out NavMeshHit hit, 1f, NavMesh.AllAreas))
+                {
+                    return result;
+                }
+            }
+            Debug.LogWarning("Couldn't find available destination on navmesh");
+            return origin;
+        }
+
         [Command]
         public void CmdTryMove(Vector3 destination)
         {

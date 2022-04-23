@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: 61235c7665fc4e84b8bb5455401ced70
+timeCreated: 1511652621
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: unit_Infantry_Light_A_Arm_L_Lower
+    100004: unit_Infantry_Light_A_Arm_L_Upper
+    100006: unit_Infantry_Light_A_Arm_R_Lower
+    100008: unit_Infantry_Light_A_Arm_R_Upper
+    100010: unit_Infantry_Light_A_Chest
+    100012: unit_Infantry_Light_A_Foot_L
+    100014: unit_Infantry_Light_A_Foot_R
+    100016: unit_Infantry_Light_A_Hand_L
+    100018: unit_Infantry_Light_A_Hand_R
+    100020: unit_Infantry_Light_A_Head
+    100022: unit_Infantry_Light_A_Leg_L_Lower
+    100024: unit_Infantry_Light_A_Leg_L_Upper
+    100026: unit_Infantry_Light_A_Leg_R_Lower
+    100028: unit_Infantry_Light_A_Leg_R_Upper
+    100030: unit_Infantry_Light_A_Torso
+    100032: unit_Infantry_Light_A_Weapon_A
+    400000: //RootNode
+    400002: unit_Infantry_Light_A_Arm_L_Lower
+    400004: unit_Infantry_Light_A_Arm_L_Upper
+    400006: unit_Infantry_Light_A_Arm_R_Lower
+    400008: unit_Infantry_Light_A_Arm_R_Upper
+    400010: unit_Infantry_Light_A_Chest
+    400012: unit_Infantry_Light_A_Foot_L
+    400014: unit_Infantry_Light_A_Foot_R
+    400016: unit_Infantry_Light_A_Hand_L
+    400018: unit_Infantry_Light_A_Hand_R
+    400020: unit_Infantry_Light_A_Head
+    400022: unit_Infantry_Light_A_Leg_L_Lower
+    400024: unit_Infantry_Light_A_Leg_L_Upper
+    400026: unit_Infantry_Light_A_Leg_R_Lower
+    400028: unit_Infantry_Light_A_Leg_R_Upper
+    400030: unit_Infantry_Light_A_Torso
+    400032: unit_Infantry_Light_A_Weapon_A
+    2300000: unit_Infantry_Light_A_Arm_L_Lower
+    2300002: unit_Infantry_Light_A_Arm_L_Upper
+    2300004: unit_Infantry_Light_A_Arm_R_Lower
+    2300006: unit_Infantry_Light_A_Arm_R_Upper
+    2300008: unit_Infantry_Light_A_Chest
+    2300010: unit_Infantry_Light_A_Foot_L
+    2300012: unit_Infantry_Light_A_Foot_R
+    2300014: unit_Infantry_Light_A_Hand_L
+    2300016: unit_Infantry_Light_A_Hand_R
+    2300018: unit_Infantry_Light_A_Head
+    2300020: unit_Infantry_Light_A_Leg_L_Lower
+    2300022: unit_Infantry_Light_A_Leg_L_Upper
+    2300024: unit_Infantry_Light_A_Leg_R_Lower
+    2300026: unit_Infantry_Light_A_Leg_R_Upper
+    2300028: unit_Infantry_Light_A_Torso
+    2300030: unit_Infantry_Light_A_Weapon_A
+    3300000: unit_Infantry_Light_A_Arm_L_Lower
+    3300002: unit_Infantry_Light_A_Arm_L_Upper
+    3300004: unit_Infantry_Light_A_Arm_R_Lower
+    3300006: unit_Infantry_Light_A_Arm_R_Upper
+    3300008: unit_Infantry_Light_A_Chest
+    3300010: unit_Infantry_Light_A_Foot_L
+    3300012: unit_Infantry_Light_A_Foot_R
+    3300014: unit_Infantry_Light_A_Hand_L
+    3300016: unit_Infantry_Light_A_Hand_R
+    3300018: unit_Infantry_Light_A_Head
+    3300020: unit_Infantry_Light_A_Leg_L_Lower
+    3300022: unit_Infantry_Light_A_Leg_L_Upper
+    3300024: unit_Infantry_Light_A_Leg_R_Lower
+    3300026: unit_Infantry_Light_A_Leg_R_Upper
+    3300028: unit_Infantry_Light_A_Torso
+    3300030: unit_Infantry_Light_A_Weapon_A
+    4300000: unit_Infantry_Light_A_Weapon_A
+    4300002: unit_Infantry_Light_A_Torso
+    4300004: unit_Infantry_Light_A_Chest
+    4300006: unit_Infantry_Light_A_Head
+    4300008: unit_Infantry_Light_A_Arm_R_Upper
+    4300010: unit_Infantry_Light_A_Arm_R_Lower
+    4300012: unit_Infantry_Light_A_Hand_R
+    4300014: unit_Infantry_Light_A_Arm_L_Upper
+    4300016: unit_Infantry_Light_A_Arm_L_Lower
+    4300018: unit_Infantry_Light_A_Hand_L
+    4300020: unit_Infantry_Light_A_Leg_R_Upper
+    4300022: unit_Infantry_Light_A_Leg_R_Lower
+    4300024: unit_Infantry_Light_A_Foot_R
+    4300026: unit_Infantry_Light_A_Leg_L_Upper
+    4300028: unit_Infantry_Light_A_Leg_L_Lower
+    4300030: unit_Infantry_Light_A_Foot_L
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
