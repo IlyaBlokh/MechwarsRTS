@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8384975379459202433}
   - component: {fileID: 3922041731942438997}
   - component: {fileID: 1901922545624267691}
+  - component: {fileID: 3705168742124482993}
   m_Layer: 0
   m_Name: CreditsMiner
   m_TagString: Untagged
@@ -148,6 +149,22 @@ MonoBehaviour:
   syncInterval: 0.1
   incomePerInterval: 10
   intervalInSec: 2
+--- !u!114 &3705168742124482993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404131331739612103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e57f7956130ff4c9e70e728c1a8097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  renderers:
+  - {fileID: 6448234393272391054}
 --- !u!1001 &4487657293638719218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -324,5 +341,10 @@ GameObject:
 --- !u!4 &6448234393272391052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2801584436201809225, guid: 9e6090ab078009e4c86b47c4dccb4e44, type: 3}
+  m_PrefabInstance: {fileID: 9195648090594832581}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6448234393272391054 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2801584436201809227, guid: 9e6090ab078009e4c86b47c4dccb4e44, type: 3}
   m_PrefabInstance: {fileID: 9195648090594832581}
   m_PrefabAsset: {fileID: 0}

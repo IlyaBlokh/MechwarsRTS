@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Combat
 {
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(TeamColorSetter))]
     public class Projectile : NetworkBehaviour
     {
         [SerializeField]

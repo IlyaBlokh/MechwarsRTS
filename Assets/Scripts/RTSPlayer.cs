@@ -14,11 +14,13 @@ public class RTSPlayer : NetworkBehaviour
     private PlayerResources playerResources;
     private PlayerBuildingPlacer playerBuildingPlacer;
     private List<Unit> units = new List<Unit>();
+    private Color teamColor;
 
     public static event Action OnAuthorityStarted; 
     public List<Unit> Units { get => units;}
     public PlayerResources PlayerResources { get => playerResources; }
     public PlayerBuildingPlacer PlayerBuildingPlacer { get => playerBuildingPlacer;  }
+    public Color TeamColor { get => teamColor; }
 
     private void Awake()
     {
@@ -67,6 +69,12 @@ public class RTSPlayer : NetworkBehaviour
     {
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
         playerBuildingPlacer.Buildings.Remove(building);
+    }
+    
+    [Server]
+    public void SetTeamColor(Color newColor)
+    {
+        teamColor = newColor;
     }
     #endregion
 

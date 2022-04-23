@@ -9,6 +9,7 @@ namespace Buildings
     [RequireComponent(typeof(NavMeshObstacle))]
     [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Targetable))]
+    [RequireComponent(typeof(TeamColorSetter))]
     public class Building : NetworkBehaviour
     {
         [SerializeField] private Sprite icon;

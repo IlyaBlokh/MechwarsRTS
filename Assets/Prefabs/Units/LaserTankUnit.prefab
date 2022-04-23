@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 4966610205524004995}
   - component: {fileID: 7938737317716031079}
   - component: {fileID: -7828757085860908721}
+  - component: {fileID: 1035458920128282275}
   m_Layer: 8
   m_Name: LaserTankUnit
   m_TagString: Untagged
@@ -302,6 +303,22 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   maxHealth: 100
+--- !u!114 &1035458920128282275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602448807687661761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e57f7956130ff4c9e70e728c1a8097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  renderers:
+  - {fileID: 2890954099398051516}
 --- !u!1 &7755266974287438083
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +409,11 @@ PrefabInstance:
 --- !u!4 &4059317434476887507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 40bb570f690f6a1469ecc2ad6ce15d15, type: 3}
+  m_PrefabInstance: {fileID: 4602448808343116344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2890954099398051516 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 40bb570f690f6a1469ecc2ad6ce15d15, type: 3}
   m_PrefabInstance: {fileID: 4602448808343116344}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5307608073647734675

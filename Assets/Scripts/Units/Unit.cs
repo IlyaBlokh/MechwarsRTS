@@ -9,6 +9,7 @@ namespace Units
     [RequireComponent(typeof(UnitMovement))]
     [RequireComponent(typeof(Targeter))]
     [RequireComponent(typeof(Damageable))]
+    [RequireComponent(typeof(TeamColorSetter))]
     public class Unit : NetworkBehaviour, IDestructible, IPurchaseable
     {
         [SerializeField] private GameObject selectionUI;

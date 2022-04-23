@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5277522872239041754}
   - component: {fileID: 5533609120719195089}
   - component: {fileID: 6029457968264185801}
+  - component: {fileID: 8001778887852560053}
   m_Layer: 0
   m_Name: TankSpawner
   m_TagString: Untagged
@@ -154,6 +155,22 @@ MonoBehaviour:
   maxQueueLength: 5
   spawnDuration: 5.75
   spawnMoveRange: 7
+--- !u!114 &8001778887852560053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2431985215281564457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e57f7956130ff4c9e70e728c1a8097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  renderers:
+  - {fileID: 376480410901940825}
 --- !u!1 &3011065884681559646
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +279,11 @@ GameObject:
 --- !u!4 &376480410901940775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1265115217351633858, guid: 454eceb54c102644aa28df276e938bcf, type: 3}
+  m_PrefabInstance: {fileID: 1492680932331315685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &376480410901940825 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1265115217351633852, guid: 454eceb54c102644aa28df276e938bcf, type: 3}
   m_PrefabInstance: {fileID: 1492680932331315685}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6048626459819355877
