@@ -67,7 +67,7 @@ namespace UI
         private void UpdatePlacing()
         {
             ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, floorMask))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, floorMask))
             {
                 buildingPreviewInstance.transform.position = 
                     new Vector3(hitInfo.point.x, buildingPreviewInstance.transform.position.y, hitInfo.point.z);

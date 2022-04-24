@@ -1,5 +1,5 @@
 using Buildings;
-using Config;
+using CameraControl;
 using Mirror;
 using Resources;
 using System;
@@ -9,6 +9,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerResources))]
 [RequireComponent(typeof(PlayerBuildingPlacer))]
+[RequireComponent(typeof(CameraController))]
 public class RTSPlayer : NetworkBehaviour
 {
     private PlayerResources playerResources;
