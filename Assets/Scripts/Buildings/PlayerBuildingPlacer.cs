@@ -18,8 +18,8 @@ namespace Buildings
         {
             //Check for overlapping
             if (Physics.CheckBox(locationPoint,
-                buildingCollider.bounds.size,
-                Quaternion.identity,
+                buildingCollider.size / 2,
+                buildingCollider.transform.rotation,
                 buildingsConfig.BuildingLockedLayers))
             {
                 return false;
