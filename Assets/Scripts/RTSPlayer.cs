@@ -10,10 +10,12 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerResources))]
 [RequireComponent(typeof(PlayerBuildingPlacer))]
 [RequireComponent(typeof(CameraController))]
+[RequireComponent(typeof(UnitCommandHandler))]
 public class RTSPlayer : NetworkBehaviour
 {
     private PlayerResources playerResources;
     private PlayerBuildingPlacer playerBuildingPlacer;
+    private CameraController cameraController;
     private List<Unit> units = new List<Unit>();
     private Color teamColor;
 
@@ -22,11 +24,13 @@ public class RTSPlayer : NetworkBehaviour
     public PlayerResources PlayerResources { get => playerResources; }
     public PlayerBuildingPlacer PlayerBuildingPlacer { get => playerBuildingPlacer;  }
     public Color TeamColor { get => teamColor; }
+    public CameraController CameraController { get => cameraController; }
 
     private void Awake()
     {
         playerResources = GetComponent<PlayerResources>();
         playerBuildingPlacer = GetComponent<PlayerBuildingPlacer>();
+        cameraController = GetComponent<CameraController>();
     }
 
     #region Server

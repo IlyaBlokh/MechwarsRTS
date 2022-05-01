@@ -1,7 +1,4 @@
 using Mirror;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +11,7 @@ namespace CameraControl
         [SerializeField] private float borderOffset;
         [SerializeField] private Vector2 screenBoundsX;
         [SerializeField] private Vector2 screenBoundsZ;
+        [SerializeField] private float offsetZ = -60f;
 
         private PlayerControls playerControls;
         private Vector2 lastInput = Vector2.zero;
@@ -21,9 +19,13 @@ namespace CameraControl
         private Vector3 movementDirection;
         private Vector3 cameraPos;
 
+        public Transform CameraTransform { get => cameraTransform; }
+        public float OffsetZ { get => offsetZ; }
+
         public override void OnStartAuthority()
         {
             cameraTransform.gameObject.SetActive(true);
+            cameraTransform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, cameraTransform.position.z + offsetZ);
 
             playerControls = new PlayerControls();
             playerControls.Player.CameraMovement.performed += HandleCameraMovementInput;

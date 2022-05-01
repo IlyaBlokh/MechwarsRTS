@@ -3,7 +3,6 @@ using Mirror;
 using UnityEngine.InputSystem;
 using Combat;
 using Networking;
-using System;
 
 namespace Units
 {
