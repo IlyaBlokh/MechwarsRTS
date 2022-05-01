@@ -21,7 +21,7 @@ namespace CameraControl
         private Vector3 movementDirection;
         private Vector3 cameraPos;
 
-        public override void OnStartServer()
+        public override void OnStartAuthority()
         {
             cameraTransform.gameObject.SetActive(true);
 
