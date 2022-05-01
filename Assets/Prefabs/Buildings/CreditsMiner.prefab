@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  maxHealth: 100
+  maxHealth: 120
 --- !u!114 &8384975379459202433
 MonoBehaviour:
   m_ObjectHideFlags: 0

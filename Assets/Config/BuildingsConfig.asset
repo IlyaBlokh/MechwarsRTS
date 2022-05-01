@@ -15,6 +15,7 @@ MonoBehaviour:
   buildings:
   - {fileID: 5533609120719195089, guid: dad2de904b7a73345a760755e91502e0, type: 3}
   - {fileID: 3922041731942438997, guid: 71900852ec8222c41af800e7bd83abfc, type: 3}
+  - {fileID: 5533609120719195089, guid: 45919c5f6fed832409fac4c8f66ebdcd, type: 3}
   buildingLockedLayers:
     serializedVersion: 2
     m_Bits: 321
