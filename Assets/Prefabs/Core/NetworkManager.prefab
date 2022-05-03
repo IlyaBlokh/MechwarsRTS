@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9075657573374731917}
   - component: {fileID: 9075657573374731918}
   - component: {fileID: 9075657573374731915}
-  - component: {fileID: 9075657573374731916}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -51,7 +50,7 @@ MonoBehaviour:
   autoStartServerBuild: 1
   serverTickRate: 30
   offlineScene: Assets/Scenes/Scene_Menu.unity
-  onlineScene: Assets/Scenes/Scene_Map_01.unity
+  onlineScene: 
   transport: {fileID: 9075657573374731915}
   networkAddress: localhost
   maxConnections: 100
@@ -66,6 +65,9 @@ MonoBehaviour:
   - {fileID: 409141159719931100, guid: c5e1254734443344d884f1255129848c, type: 3}
   - {fileID: 2431985215281564457, guid: dad2de904b7a73345a760755e91502e0, type: 3}
   - {fileID: 1404131331739612103, guid: 71900852ec8222c41af800e7bd83abfc, type: 3}
+  - {fileID: 4602448807687661761, guid: ee21ba1fe6dbc634085af2e324eb169f, type: 3}
+  - {fileID: 7334291784326533344, guid: aee126402a6bb6e47b68e00df94b3f2b, type: 3}
+  - {fileID: 2431985215281564457, guid: 45919c5f6fed832409fac4c8f66ebdcd, type: 3}
   unitBasePrefab: {fileID: 1927270660119224144, guid: 03d91746a6a1fa94f803d1d94018c510, type: 3}
   gameLoopControllerPrefab: {fileID: -3651181496826592433, guid: c5e1254734443344d884f1255129848c, type: 3}
   playersConfig: {fileID: 11400000, guid: e24e358f1325b5a4e9c1ed092a00ccbd, type: 2}
@@ -94,17 +96,3 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
---- !u!114 &9075657573374731916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9075657573374731914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0
