@@ -17,12 +17,12 @@ public class RTSPlayer : NetworkBehaviour
     private PlayerResources playerResources;
     private PlayerBuildingPlacer playerBuildingPlacer;
     private CameraController cameraController;
+    private UnitCommandHandler unitCommandHandler;
     private List<Unit> units = new List<Unit>();
     private Color teamColor;
     [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
     private bool isPartyOwner;
 
-    public static event Action OnPlayerInitialized;
     public static event Action<bool> OnPartyOwnerStateUpdated;
 
     public List<Unit> Units { get => units;}
@@ -37,12 +37,14 @@ public class RTSPlayer : NetworkBehaviour
         playerResources = GetComponent<PlayerResources>();
         playerBuildingPlacer = GetComponent<PlayerBuildingPlacer>();
         cameraController = GetComponent<CameraController>();
+        unitCommandHandler = GetComponent<UnitCommandHandler>();
     }
 
     #region Server
     public override void OnStartServer()
     {
         base.OnStartServer();
+        DontDestroyOnLoad(gameObject);
         Unit.OnServerUnitSpawned += ServerHandleUnitSpawn;
         Unit.OnServerUnitDrop += ServerHandleUnitDrop;
         Building.OnServerBuildingSpawned += ServerHandleBuildingSpawn;
@@ -113,11 +115,6 @@ public class RTSPlayer : NetworkBehaviour
         Building.OnAuthorityBuildingDrop += AuthorityHandleBuildingDrop;
     }
 
-    public void InitPlayer()
-    {
-        OnPlayerInitialized?.Invoke();
-    }
-
     private void AuthorityHandlePartyOwnerStateUpdated(bool oldValue, bool newValue)
     {
         if (!hasAuthority) return;
@@ -128,6 +125,7 @@ public class RTSPlayer : NetworkBehaviour
     {
         if (isClientOnly)
         {
+            DontDestroyOnLoad(gameObject);
             ((RTSNetworkManager)NetworkManager.singleton).Players.Add(this);
         }
     }

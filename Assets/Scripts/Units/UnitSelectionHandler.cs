@@ -28,14 +28,9 @@ namespace Units
         public List<Unit> SelectedUnits { get => selectedUnits; }
 
         #region Client
-        private void Awake()
-        {
-            mainCamera = Camera.main;
-            Unit.OnAuthorityUnitDrop += AuthorityHandleUnitDrop;
-        }
-
         private void Start()
         {
+            Unit.OnAuthorityUnitDrop += AuthorityHandleUnitDrop;
             player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
             GameLoopController.OnClientGameOver += ClientHandleGameOver;
         }
@@ -48,6 +43,8 @@ namespace Units
 
         private void Update()
         {
+            if (mainCamera == null) mainCamera = Camera.main;
+
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 InitSelection();

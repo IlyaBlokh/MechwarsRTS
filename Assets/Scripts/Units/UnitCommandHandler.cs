@@ -17,7 +17,6 @@ namespace Units
         private void Awake()
         {
             unitSelectionHandler = GetComponent<UnitSelectionHandler>();
-            mainCamera = Camera.main;
         }
 
         private void Start()
@@ -29,12 +28,14 @@ namespace Units
         {
             GameLoopController.OnClientGameOver -= ClientHandleGameOver;
         }
-
+        
         #region Client
 
         private void Update()
         {
             if (!hasAuthority) return;
+
+            if (mainCamera == null) mainCamera = Camera.main;
 
             if (!Mouse.current.rightButton.wasPressedThisFrame) return;
 

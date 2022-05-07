@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  chaseStopDistance: 20
+  chaseStopDistance: 30
 --- !u!114 &-6091353353621496465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 4082424462183920992}
   projectilePrefab: {fileID: 7334291784326533344, guid: aee126402a6bb6e47b68e00df94b3f2b, type: 3}
   shotsPerSecond: 1
-  fireRange: 16
+  fireRange: 35
 --- !u!114 &-7828757085860908721
 MonoBehaviour:
   m_ObjectHideFlags: 0

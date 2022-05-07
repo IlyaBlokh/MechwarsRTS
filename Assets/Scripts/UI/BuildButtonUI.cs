@@ -29,7 +29,7 @@ namespace UI
             buildButton.image.sprite = building.Icon;
             buildCost.text = building.Price.ToString();
             buildButton.onClick.AddListener(OnBuildClick);
-            RTSPlayer.OnPlayerInitialized += InitNetworkClient;
+            InitNetworkClient();
         }
 
         private void InitNetworkClient()
@@ -46,7 +46,6 @@ namespace UI
         private void OnDestroy()
         {
             buildButton.onClick.RemoveAllListeners();
-            RTSPlayer.OnPlayerInitialized -= InitNetworkClient;
         }
 
         private void OnBuildClick()

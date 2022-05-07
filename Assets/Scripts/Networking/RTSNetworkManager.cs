@@ -47,11 +47,12 @@ namespace Networking
         {
             base.OnServerAddPlayer(conn);
             //set team color
-            var nextColor = (NetworkServer.connections.Count - 1) % NetworkServer.connections.Count;
             RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
+            players.Add(player);
+
+            var nextColor = (players.Count - 1) % players.Count;
             player.SetTeamColor(playersConfig.TeamColors[nextColor]);
             
-            players.Add(player);
             player.SetIsPartyOwner(players.Count == 1);
         }
 
@@ -69,7 +70,6 @@ namespace Networking
                         GetStartPosition().position,
                         Quaternion.identity);
                     NetworkServer.Spawn(unitBaseBuilding, player.connectionToClient);
-                    player.InitPlayer();
                 });
             }
         }

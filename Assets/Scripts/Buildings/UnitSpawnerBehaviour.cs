@@ -25,7 +25,7 @@ namespace Buildings
 
         private void Start()
         {
-            player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+            player = connectionToClient.identity.GetComponent<RTSPlayer>();
             currentUnitsInQueue = 0;
             spawnTimer = .0f;
         }

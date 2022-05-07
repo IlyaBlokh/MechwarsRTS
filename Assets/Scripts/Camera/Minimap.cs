@@ -16,12 +16,7 @@ namespace CameraControl
 
         private void Start()
         {
-            RTSPlayer.OnPlayerInitialized += InitNetworkClient;
-        }
-
-        private void OnDestroy()
-        {
-            RTSPlayer.OnPlayerInitialized -= InitNetworkClient;
+            InitNetworkClient();
         }
 
         private void InitNetworkClient()

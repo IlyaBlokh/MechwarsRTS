@@ -11,12 +11,11 @@ namespace UI
         private RTSPlayer player;
         private void Start()
         {
-            RTSPlayer.OnPlayerInitialized += InitPlayer;
+            InitPlayer();
         }
 
         private void OnDestroy()
         {
-            RTSPlayer.OnPlayerInitialized -= InitPlayer;
             player.PlayerResources.OnClientCreditsUpdated -= DisplayCreditsAmount;
         }
 
