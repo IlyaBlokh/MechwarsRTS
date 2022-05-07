@@ -8,12 +8,15 @@ public class TeamColorSetter : NetworkBehaviour
     [SyncVar(hook = nameof(ClientHandleColorUpdate))]
     private Color teamColor;
 
-    #region Server
-    public override void OnStartServer()
+    private void Start()
     {
-        teamColor = connectionToClient.identity.GetComponent<RTSPlayer>().TeamColor;
+        RTSPlayer.OnPlayerInitialized += InitNetworkClient;
     }
-    #endregion
+
+    private void OnDestroy()
+    {
+        RTSPlayer.OnPlayerInitialized -= InitNetworkClient;
+    }
 
     #region Client
     private void ClientHandleColorUpdate(Color oldColor, Color newColor)
@@ -22,6 +25,12 @@ public class TeamColorSetter : NetworkBehaviour
         {
             renderer.material.SetColor("_BaseColor", newColor);
         }
+    }
+
+    private void InitNetworkClient()
+    {
+        NetworkClient.connection.identity.TryGetComponent(out RTSPlayer ownerPlayer);
+        teamColor = ownerPlayer.TeamColor;
     }
     #endregion
 }

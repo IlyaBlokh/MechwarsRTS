@@ -1,6 +1,7 @@
 using Buildings;
 using CameraControl;
 using Mirror;
+using Networking;
 using Resources;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,18 @@ public class RTSPlayer : NetworkBehaviour
     private CameraController cameraController;
     private List<Unit> units = new List<Unit>();
     private Color teamColor;
+    [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
+    private bool isPartyOwner;
 
-    public static event Action OnAuthorityStarted; 
+    public static event Action OnPlayerInitialized;
+    public static event Action<bool> OnPartyOwnerStateUpdated;
+
     public List<Unit> Units { get => units;}
     public PlayerResources PlayerResources { get => playerResources; }
     public PlayerBuildingPlacer PlayerBuildingPlacer { get => playerBuildingPlacer;  }
     public Color TeamColor { get => teamColor; }
     public CameraController CameraController { get => cameraController; }
+    public bool IsPartyOwner { get => isPartyOwner; }
 
     private void Awake()
     {
@@ -81,13 +87,25 @@ public class RTSPlayer : NetworkBehaviour
     {
         teamColor = newColor;
     }
+
+    [Server]
+    public void SetIsPartyOwner(bool newValue)
+    {
+        isPartyOwner = newValue;
+    }
+
+    [Command]
+    public void CmdStartGame()
+    {
+        if (!IsPartyOwner) return;
+        ((RTSNetworkManager)NetworkManager.singleton).StartGame();
+    }
     #endregion
 
     #region Client
 
     public override void OnStartAuthority()
     {
-        OnAuthorityStarted?.Invoke();
         if (NetworkServer.active) return;
         Unit.OnAuthorityUnitSpawned += AuthorityHandleUnitSpawn;
         Unit.OnAuthorityUnitDrop += AuthorityHandleUnitDrop;
@@ -95,14 +113,37 @@ public class RTSPlayer : NetworkBehaviour
         Building.OnAuthorityBuildingDrop += AuthorityHandleBuildingDrop;
     }
 
+    public void InitPlayer()
+    {
+        OnPlayerInitialized?.Invoke();
+    }
+
+    private void AuthorityHandlePartyOwnerStateUpdated(bool oldValue, bool newValue)
+    {
+        if (!hasAuthority) return;
+        OnPartyOwnerStateUpdated?.Invoke(newValue);
+    }
+
+    public override void OnStartClient()
+    {
+        if (isClientOnly)
+        {
+            ((RTSNetworkManager)NetworkManager.singleton).Players.Add(this);
+        }
+    }
+
     public override void OnStopClient()
     {
-        if (isClientOnly && hasAuthority)
+        if (isClientOnly)
         {
-            Unit.OnAuthorityUnitSpawned -= AuthorityHandleUnitSpawn;
-            Unit.OnAuthorityUnitDrop -= AuthorityHandleUnitDrop;
-            Building.OnAuthorityBuildingSpawned -= AuthorityHandleBuildingSpawn;
-            Building.OnAuthorityBuildingDrop -= AuthorityHandleBuildingDrop;
+            ((RTSNetworkManager)NetworkManager.singleton).Players.Remove(this);
+            if (hasAuthority)
+            {
+                Unit.OnAuthorityUnitSpawned -= AuthorityHandleUnitSpawn;
+                Unit.OnAuthorityUnitDrop -= AuthorityHandleUnitDrop;
+                Building.OnAuthorityBuildingSpawned -= AuthorityHandleBuildingSpawn;
+                Building.OnAuthorityBuildingDrop -= AuthorityHandleBuildingDrop;
+            }
         }
     }
 
