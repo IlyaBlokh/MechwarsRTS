@@ -1,5 +1,6 @@
 using Config;
 using Mirror;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Networking
         [SerializeField] private GameObject unitBasePrefab;
         [SerializeField] private GameLoopController gameLoopControllerPrefab;
         [SerializeField] PlayersConfig playersConfig;
+        [SerializeField] NetworkConfig networkConfig;
 
         private bool isGameInProgress = false;
         private List<RTSPlayer> players = new List<RTSPlayer>();
@@ -51,7 +53,16 @@ namespace Networking
             RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
             players.Add(player);
 
-            player.SetDisplayName($"Player {players.Count}");
+            string playerName;
+            if (networkConfig.UseSteam)
+            {
+                playerName = SteamFriends.GetPersonaName();
+            }
+            else
+            {
+                playerName = $"Player {players.Count}";
+            }
+            player.SetDisplayName(playerName);
             var nextColor = (players.Count - 1) % players.Count;
             player.SetTeamColor(playersConfig.TeamColors[nextColor]);
             

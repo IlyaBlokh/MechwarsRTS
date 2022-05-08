@@ -408,39 +408,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1247389728 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9075657573374731914, guid: a922fae436906c8478c4535a04706d89, type: 3}
-  m_PrefabInstance: {fileID: 1888756464}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1247389729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247389728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef4bffeda13d7a748973ff9204401c07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1247389730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247389728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6e55fca1f4e4844593a3dd65a3ecb39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Channels: 0200000001000000
-  Timeout: 25
-  AllowSteamRelay: 1
-  UseNextGenSteamNetworking: 1
 --- !u!1001 &1888756464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,10 +463,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9075657573374731918, guid: a922fae436906c8478c4535a04706d89, type: 3}
-      propertyPath: transport
-      value: 
-      objectReference: {fileID: 1247389730}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a922fae436906c8478c4535a04706d89, type: 3}
 --- !u!1001 &8889103720692862715

@@ -3202,6 +3202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   welcomeWindow: {fileID: 710086835}
   joinLobbyWindow: {fileID: 339519601}
+  networkConfig: {fileID: 11400000, guid: 001228c3c7f26474b9aa8c7da375ad0b, type: 2}
 --- !u!1 &8889103721530892931
 GameObject:
   m_ObjectHideFlags: 0

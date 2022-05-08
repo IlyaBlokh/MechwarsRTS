@@ -72,6 +72,7 @@ MonoBehaviour:
   unitBasePrefab: {fileID: 1927270660119224144, guid: 03d91746a6a1fa94f803d1d94018c510, type: 3}
   gameLoopControllerPrefab: {fileID: -3651181496826592433, guid: c5e1254734443344d884f1255129848c, type: 3}
   playersConfig: {fileID: 11400000, guid: e24e358f1325b5a4e9c1ed092a00ccbd, type: 2}
+  networkConfig: {fileID: 11400000, guid: 001228c3c7f26474b9aa8c7da375ad0b, type: 2}
 --- !u!114 &9075657573374731915
 MonoBehaviour:
   m_ObjectHideFlags: 0
