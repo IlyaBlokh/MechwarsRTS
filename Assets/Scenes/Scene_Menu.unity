@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &383621219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9075657573374731915, guid: a922fae436906c8478c4535a04706d89, type: 3}
+  m_PrefabInstance: {fileID: 1888756464}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &512983173
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,9 +426,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1247389730, guid: a922fae436906c8478c4535a04706d89, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9075657573374731914, guid: a922fae436906c8478c4535a04706d89, type: 3}
       propertyPath: m_Name
       value: NetworkManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075657573374731915, guid: a922fae436906c8478c4535a04706d89, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9075657573374731917, guid: a922fae436906c8478c4535a04706d89, type: 3}
       propertyPath: m_RootOrder
@@ -463,6 +482,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9075657573374731918, guid: a922fae436906c8478c4535a04706d89, type: 3}
+      propertyPath: transport
+      value: 
+      objectReference: {fileID: 383621219}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a922fae436906c8478c4535a04706d89, type: 3}
 --- !u!1001 &8889103720692862715

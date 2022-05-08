@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048eb7d5342065e419ecdf4c3bea4fae, type: 3}
   m_Name: NetworkConfig
   m_EditorClassIdentifier: 
-  useSteam: 1
+  useSteam: 0
