@@ -1,6 +1,7 @@
 using Mirror;
 using Networking;
-using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,17 +12,24 @@ namespace UI.Menu
     {
         [SerializeField] private GameObject lobbyUI;
         [SerializeField] private Button startGameBtn;
+        [SerializeField] private TMP_Text[] playerNames;
+
+        private List<RTSPlayer> connectedPlayers = new List<RTSPlayer>();
 
         private void Start()
         {
             RTSNetworkManager.ClientConnected += HandleClientConnected;
             RTSPlayer.OnPartyOwnerStateUpdated += HandlePartyOwnerStateUpdated;
+            RTSPlayer.OnClientInfoUpdated += HandleClientInfoUpdated;
+            RTSNetworkManager.ClientDisonnected += HandleClientInfoUpdated;
         }
 
         private void OnDestroy()
         {
             RTSNetworkManager.ClientConnected -= HandleClientConnected;
             RTSPlayer.OnPartyOwnerStateUpdated -= HandlePartyOwnerStateUpdated;
+            RTSPlayer.OnClientInfoUpdated -= HandleClientInfoUpdated;
+            RTSNetworkManager.ClientDisonnected -= HandleClientInfoUpdated;
         }
 
         private void HandleClientConnected()
@@ -32,6 +40,25 @@ namespace UI.Menu
         private void HandlePartyOwnerStateUpdated(bool state)
         {
             startGameBtn.gameObject.SetActive(state);
+        }
+
+        private void HandleClientInfoUpdated()
+        {
+            connectedPlayers = ((RTSNetworkManager)NetworkManager.singleton).Players;
+            if (playerNames.Length < connectedPlayers.Count)
+            {
+                Debug.LogError("Not enough text elements for players!");
+            }
+
+            for (int i = 0; i < connectedPlayers.Count; i++)
+            {
+                playerNames[i].text = connectedPlayers[i].DisplayName;
+            }
+            for (int i = connectedPlayers.Count; i < playerNames.Length; i++)
+            {
+                playerNames[i].text = "Waiting for player...";
+            }
+            startGameBtn.interactable = connectedPlayers.Count >= 2;
         }
 
         public void StartGame()

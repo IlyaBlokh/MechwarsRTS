@@ -22,8 +22,11 @@ public class RTSPlayer : NetworkBehaviour
     private Color teamColor;
     [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
     private bool isPartyOwner;
+    [SyncVar(hook = nameof(ClientHandleDisplayNameUpdated))]
+    private string displayName;
 
     public static event Action<bool> OnPartyOwnerStateUpdated;
+    public static event Action OnClientInfoUpdated;
 
     public List<Unit> Units { get => units;}
     public PlayerResources PlayerResources { get => playerResources; }
@@ -31,6 +34,7 @@ public class RTSPlayer : NetworkBehaviour
     public Color TeamColor { get => teamColor; }
     public CameraController CameraController { get => cameraController; }
     public bool IsPartyOwner { get => isPartyOwner; }
+    public string DisplayName { get => displayName; }
 
     private void Awake()
     {
@@ -83,7 +87,13 @@ public class RTSPlayer : NetworkBehaviour
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
         playerBuildingPlacer.Buildings.Remove(building);
     }
-    
+
+    [Server]
+    public void SetDisplayName(string newName)
+    {
+        displayName = newName;
+    }
+
     [Server]
     public void SetTeamColor(Color newColor)
     {
@@ -121,6 +131,11 @@ public class RTSPlayer : NetworkBehaviour
         OnPartyOwnerStateUpdated?.Invoke(newValue);
     }
 
+    private void ClientHandleDisplayNameUpdated(string oldName, string newName)
+    {
+        OnClientInfoUpdated?.Invoke();
+    }
+
     public override void OnStartClient()
     {
         if (isClientOnly)
@@ -135,6 +150,7 @@ public class RTSPlayer : NetworkBehaviour
         if (isClientOnly)
         {
             ((RTSNetworkManager)NetworkManager.singleton).Players.Remove(this);
+            OnClientInfoUpdated?.Invoke();
             if (hasAuthority)
             {
                 Unit.OnAuthorityUnitSpawned -= AuthorityHandleUnitSpawn;

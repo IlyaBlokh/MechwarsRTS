@@ -35,6 +35,8 @@ namespace Networking
         {
             RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
             players.Remove(player);
+            ClientDisonnected?.Invoke();
+            base.OnServerDisconnect(conn);
         }
 
         public override void OnStopServer()
@@ -46,10 +48,11 @@ namespace Networking
         public override void OnServerAddPlayer(NetworkConnection conn)
         {
             base.OnServerAddPlayer(conn);
-            //set team color
+
             RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
             players.Add(player);
 
+            player.SetDisplayName($"Player {players.Count}");
             var nextColor = (players.Count - 1) % players.Count;
             player.SetTeamColor(playersConfig.TeamColors[nextColor]);
             

@@ -2218,6 +2218,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyUI: {fileID: 8889103720631984226}
   startGameBtn: {fileID: 2014233073}
+  playerNames:
+  - {fileID: 8889103721559440027}
+  - {fileID: 8889103720546073530}
+  - {fileID: 8889103721066200449}
+  - {fileID: 8889103720830738861}
 --- !u!1 &8889103720830738863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,7 +2642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8889103721032377994
 RectTransform:
   m_ObjectHideFlags: 0
