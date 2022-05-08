@@ -5,7 +5,7 @@ Playable via local network or Steam with friends
 
 [![Gameplay](http://img.youtube.com/vi/LOGzOtLlHPo/0.jpg)](https://youtu.be/LOGzOtLlHPo "Mechwars RTS")
 
-*Click to watch video*a
+*Click to watch video*
 
 Developed on Unity, C#, Mirror, Streamworks API
 
