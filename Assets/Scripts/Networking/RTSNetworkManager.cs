@@ -22,8 +22,7 @@ namespace Networking
         public List<RTSPlayer> Players { get => players; }
 
         #region Server
-
-        public override void OnServerConnect(NetworkConnection conn)
+        public override void OnServerConnect(NetworkConnectionToClient conn)
         {
             if (isGameInProgress)
             {
@@ -31,7 +30,7 @@ namespace Networking
             }
         }
 
-        public override void OnServerDisconnect(NetworkConnection conn)
+        public override void OnServerDisconnect(NetworkConnectionToClient conn)
         {
             RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
             players.Remove(player);
@@ -45,7 +44,7 @@ namespace Networking
             isGameInProgress = false;
         }
 
-        public override void OnServerAddPlayer(NetworkConnection conn)
+        public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
             base.OnServerAddPlayer(conn);
 
