@@ -1,6 +1,7 @@
 # MechwarsRTS
 
 Realtime strategy game with multiplayer
+
 Playable via local network or Steam with friends
 
 [![Gameplay](http://img.youtube.com/vi/LOGzOtLlHPo/0.jpg)](https://youtu.be/LOGzOtLlHPo "Mechwars RTS")
