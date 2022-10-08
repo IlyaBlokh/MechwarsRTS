@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ccfa9f7e13816499443e1ec53a9aed, type: 3}
   m_Name: PlayersConfig
   m_EditorClassIdentifier: 
-  playersColors: 01000000000000000200000003000000
+  playersColors: 02000000010000000300000004000000

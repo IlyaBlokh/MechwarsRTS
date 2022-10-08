@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PlayersColors
   m_EditorClassIdentifier: 
   teamColors:
-  - ColorId: 0
-    Material: {fileID: 2100000, guid: 49ea7fc48227b5f468ceea6d7e86ff13, type: 2}
   - ColorId: 1
-    Material: {fileID: 2100000, guid: f56176f94bdf1474cb5de8e9f662598f, type: 2}
+    Material: {fileID: 2100000, guid: 49ea7fc48227b5f468ceea6d7e86ff13, type: 2}
   - ColorId: 2
-    Material: {fileID: 2100000, guid: 65f61c2af59f2c349acb8c9fc1194795, type: 2}
+    Material: {fileID: 2100000, guid: f56176f94bdf1474cb5de8e9f662598f, type: 2}
   - ColorId: 3
+    Material: {fileID: 2100000, guid: 65f61c2af59f2c349acb8c9fc1194795, type: 2}
+  - ColorId: 4
     Material: {fileID: 2100000, guid: 5636e1eb4a1553e469aed51f6caf8487, type: 2}
