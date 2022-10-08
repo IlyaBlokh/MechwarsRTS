@@ -13,7 +13,7 @@ namespace Mirror
         // create writer immediately with it's own buffer so no one can mess with it and so that we can resize it.
         // note: BinaryWriter allocates too much, so we only use a MemoryStream
         // => 1500 bytes by default because on average, most packets will be <= MTU
-        byte[] buffer = new byte[1500];
+        internal byte[] buffer = new byte[1500];
 
         /// <summary>Next position to write to the buffer</summary>
         public int Position;
@@ -31,7 +31,7 @@ namespace Mirror
         // 1. 'has space' checks are necessary even for fixed sized writers.
         // 2. all writers will eventually be large enough to stop resizing.
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        void EnsureCapacity(int value)
+        internal void EnsureCapacity(int value)
         {
             if (buffer.Length < value)
             {
@@ -82,6 +82,26 @@ namespace Mirror
         //   WriteBlittable assumes same endianness for server & client.
         //   All Unity 2018+ platforms are little endian.
         //   => run NetworkWriterTests.BlittableOnThisPlatform() to verify!
+        //
+        // This is not safe to expose to random structs.
+        //   * StructLayout.Sequential is the default, which is safe.
+        //     if the struct contains a reference type, it is converted to Auto.
+        //     but since all structs here are unmanaged blittable, it's safe.
+        //     see also: https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.layoutkind?view=netframework-4.8#system-runtime-interopservices-layoutkind-sequential
+        //   * StructLayout.Pack depends on CPU word size.
+        //     this may be different 4 or 8 on some ARM systems, etc.
+        //     this is not safe, and would cause bytes/shorts etc. to be padded.
+        //     see also: https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.structlayoutattribute.pack?view=net-6.0
+        //   * If we force pack all to '1', they would have no padding which is
+        //     great for bandwidth. but on some android systems, CPU can't read
+        //     unaligned memory.
+        //     see also: https://github.com/vis2k/Mirror/issues/3044
+        //   * The only option would be to force explicit layout with multiples
+        //     of word size. but this requires lots of weaver checking and is
+        //     still questionable (IL2CPP etc.).
+        //
+        // Note: inlining WriteBlittable is enough. don't inline WriteInt etc.
+        //       we don't want WriteBlittable to be copied in place everywhere.
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal unsafe void WriteBlittable<T>(T value)
             where T : unmanaged
@@ -148,12 +168,10 @@ namespace Mirror
                 WriteBlittable(value.Value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void WriteByte(byte value) => WriteBlittable(value);
 
         // for byte arrays with consistent size, where the reader knows how many to read
         // (like a packet opcode that's always the same)
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void WriteBytes(byte[] buffer, int offset, int count)
         {
             EnsureCapacity(Position + count);

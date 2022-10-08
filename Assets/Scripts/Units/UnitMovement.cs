@@ -46,7 +46,7 @@ namespace Units
         {
             if (targeter.Target != null)
             {
-                if (Utils.IsDistanceGreater(transform.position, targeter.Target.transform.position, chaseStopDistance))
+                if (Utils.Utils.IsDistanceGreater(transform.position, targeter.Target.transform.position, chaseStopDistance))
                 {
                     navMeshAgent.SetDestination(targeter.Target.transform.position);
                 }

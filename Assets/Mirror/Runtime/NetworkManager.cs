@@ -955,10 +955,7 @@ namespace Mirror
 
             if (clientReadyConnection != null)
             {
-#pragma warning disable 618
-                // obsolete method calls new method because it's not empty
-                OnClientConnect(clientReadyConnection);
-#pragma warning restore 618
+                OnClientConnect();
                 clientLoadedScene = true;
                 clientReadyConnection = null;
             }
@@ -992,13 +989,7 @@ namespace Mirror
                 OnServerSceneChanged(networkSceneName);
 
                 if (NetworkClient.isConnected)
-                {
-                    // let client know that we changed scene
-#pragma warning disable 618
-                    // obsolete method calls new method because it's not empty
-                    OnClientSceneChanged(NetworkClient.connection);
-#pragma warning restore 618
-                }
+                    OnClientSceneChanged();
             }
         }
 
@@ -1024,21 +1015,13 @@ namespace Mirror
 
             if (clientReadyConnection != null)
             {
-#pragma warning disable 618
-                // obsolete method calls new method because it's not empty
-                OnClientConnect(clientReadyConnection);
-#pragma warning restore 618
+                OnClientConnect();
                 clientLoadedScene = true;
                 clientReadyConnection = null;
             }
 
             if (NetworkClient.isConnected)
-            {
-#pragma warning disable 618
-                // obsolete method calls new method because it's not empty
-                OnClientSceneChanged(NetworkClient.connection);
-#pragma warning restore 618
-            }
+                OnClientSceneChanged();
         }
 
         /// <summary>
@@ -1070,7 +1053,7 @@ namespace Mirror
         }
 
         /// <summary>Get the next NetworkStartPosition based on the selected PlayerSpawnMethod.</summary>
-        public Transform GetStartPosition()
+        public virtual Transform GetStartPosition()
         {
             // first remove any dead transforms
             startPositions.RemoveAll(t => t == null);
@@ -1184,10 +1167,7 @@ namespace Mirror
             if (string.IsNullOrWhiteSpace(onlineScene) || onlineScene == offlineScene || IsSceneActive(onlineScene))
             {
                 clientLoadedScene = false;
-#pragma warning disable 618
-                // obsolete method calls new method because it's not empty
-                OnClientConnect(NetworkClient.connection);
-#pragma warning restore 618
+                OnClientConnect();
             }
             else
             {
@@ -1200,19 +1180,13 @@ namespace Mirror
         void OnClientDisconnectInternal()
         {
             //Debug.Log("NetworkManager.OnClientDisconnectInternal");
-#pragma warning disable 618
-            // obsolete method calls new method because it's not empty
-            OnClientDisconnect(NetworkClient.connection);
-#pragma warning restore 618
+            OnClientDisconnect();
         }
 
         void OnClientNotReadyMessageInternal(NotReadyMessage msg)
         {
             //Debug.Log("NetworkManager.OnClientNotReadyMessageInternal");
             NetworkClient.ready = false;
-#pragma warning disable 618
-            OnClientNotReady(NetworkClient.connection);
-#pragma warning restore 618
             OnClientNotReady();
 
             // NOTE: clientReadyConnection is not set here! don't want OnClientConnect to be invoked again after scene changes.
@@ -1269,8 +1243,16 @@ namespace Mirror
             NetworkServer.AddPlayerForConnection(conn, player);
         }
 
-        /// <summary>Called on server when transport raises an exception. NetworkConnection may be null.</summary>
+        // DEPRECATED 2022-05-12
+        [Obsolete("OnServerError(conn, Exception) was changed to OnServerError(conn, TransportError, string)")]
         public virtual void OnServerError(NetworkConnectionToClient conn, Exception exception) {}
+        /// <summary>Called on server when transport raises an exception. NetworkConnection may be null.</summary>
+        public virtual void OnServerError(NetworkConnectionToClient conn, TransportError error, string reason)
+        {
+#pragma warning disable CS0618
+            OnServerError(conn, new Exception(reason));
+#pragma warning restore CS0618
+        }
 
         /// <summary>Called from ServerChangeScene immediately before SceneManager.LoadSceneAsync is executed</summary>
         public virtual void OnServerChangeScene(string newSceneName) {}
@@ -1296,10 +1278,6 @@ namespace Mirror
             }
         }
 
-        // Deprecated 2021-12-11
-        [Obsolete("Remove the NetworkConnection parameter in your override and use NetworkClient.connection instead.")]
-        public virtual void OnClientConnect(NetworkConnection conn) => OnClientConnect();
-
         /// <summary>Called on clients when disconnected from a server.</summary>
         public virtual void OnClientDisconnect()
         {
@@ -1309,19 +1287,19 @@ namespace Mirror
             StopClient();
         }
 
-        // Deprecated 2021-12-11
-        [Obsolete("Remove the NetworkConnection parameter in your override and use NetworkClient.connection instead.")]
-        public virtual void OnClientDisconnect(NetworkConnection conn) => OnClientDisconnect();
-
-        /// <summary>Called on client when transport raises an exception.</summary>
+        // DEPRECATED 2022-05-12
+        [Obsolete("OnClientError(Exception) was changed to OnClientError(TransportError, string)")]
         public virtual void OnClientError(Exception exception) {}
+        /// <summary>Called on client when transport raises an exception.</summary>
+        public virtual void OnClientError(TransportError error, string reason)
+        {
+#pragma warning disable CS0618
+            OnClientError(new Exception(reason));
+#pragma warning restore CS0618
+        }
 
         /// <summary>Called on clients when a servers tells the client it is no longer ready, e.g. when switching scenes.</summary>
         public virtual void OnClientNotReady() {}
-
-        // Deprecated 2021-12-11
-        [Obsolete("Remove the NetworkConnection parameter in your override and use NetworkClient.connection instead.")]
-        public virtual void OnClientNotReady(NetworkConnection conn) {}
 
         /// <summary>Called from ClientChangeScene immediately before SceneManager.LoadSceneAsync is executed</summary>
         // customHandling: indicates if scene loading will be handled through overrides
@@ -1343,10 +1321,6 @@ namespace Mirror
                 NetworkClient.AddPlayer();
             }
         }
-
-        // Deprecated 2021-12-11
-        [Obsolete("Remove the NetworkConnection parameter in your override and use NetworkClient.connection instead.")]
-        public virtual void OnClientSceneChanged(NetworkConnection conn) => OnClientSceneChanged();
 
         // Since there are multiple versions of StartServer, StartClient and
         // StartHost, to reliably customize their functionality, users would

@@ -1,4 +1,7 @@
-﻿public interface IDestructible
+﻿namespace Combat
 {
-    public void HandleDestruction();
+    public interface IDestructible
+    {
+        public void HandleDestruction();
+    }
 }

@@ -42,7 +42,7 @@ namespace Combat
         private bool CanShoot()
         {
             if (target == null) { return false; }
-            if (Utils.IsDistanceGreater(projectileSpawnPoint.position, target.GetAimPoint(), fireRange)) { return false; }
+            if (Utils.Utils.IsDistanceGreater(projectileSpawnPoint.position, target.GetAimPoint(), fireRange)) { return false; }
 
             return true;
         }

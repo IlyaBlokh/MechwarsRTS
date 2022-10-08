@@ -1,7 +1,7 @@
-using Config;
 using Mirror;
-using Resources;
 using System.Collections.Generic;
+using Data.Config;
+using GameResources;
 using UnityEngine;
 
 namespace Buildings

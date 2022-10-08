@@ -1,28 +1,39 @@
+using System.Linq;
+using Data;
+using Data.Config;
 using Mirror;
+using Networking;
 using UnityEngine;
 
-public class TeamColorSetter : NetworkBehaviour
+namespace Utils
 {
-    [SerializeField] private Renderer[] renderers;
-
-    [SyncVar(hook = nameof(ClientHandleColorUpdate))]
-    private Color teamColor;
-
-    #region Server
-    public override void OnStartServer()
+    public class TeamColorSetter : NetworkBehaviour
     {
-        RTSPlayer ownerPlayer = connectionToClient.identity.GetComponent<RTSPlayer>();
-        teamColor = ownerPlayer.TeamColor;
-    }
-    #endregion
+        [SerializeField] private Renderer[] renderers;
+        [SerializeField] private PlayersColors config;
 
-    #region Client
-    private void ClientHandleColorUpdate(Color oldColor, Color newColor)
-    {
-        foreach (Renderer renderer in renderers)
+        [SyncVar(hook = nameof(ClientHandleColorUpdate))]
+        private ColorId playerColor;
+        
+        #region Server
+        public override void OnStartServer()
         {
-            renderer.material.SetColor("_BaseColor", newColor);
+            RTSPlayer ownerPlayer = connectionToClient.identity.GetComponent<RTSPlayer>();
+            playerColor = ownerPlayer.DisplayColor;
+            Debug.Log($"setter color: {playerColor}");
         }
+        #endregion
+
+        #region Client
+        private void ClientHandleColorUpdate(ColorId oldColor, ColorId newColor)
+        {
+            Debug.Log($"ClientHandleColorUpdate. new color: {newColor}");
+            foreach (Renderer renderer in renderers)
+            {
+                renderer.material = config.TeamColors.First(x => x.ColorId == newColor).Material;
+            }
+        }
+
+        #endregion
     }
-    #endregion
 }

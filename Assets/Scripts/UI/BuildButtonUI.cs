@@ -4,7 +4,7 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using System;
+using Networking;
 
 namespace UI
 {
@@ -15,7 +15,7 @@ namespace UI
         [SerializeField] private Building building;
         [SerializeField] private LayerMask floorMask;
 
-        private Camera mainCamera;
+        private UnityEngine.Camera mainCamera;
         private RTSPlayer ownerPlayer = null;
         private GameObject buildingPreviewInstance;
         private Renderer buildingPreviewRenderer;

@@ -68,6 +68,21 @@ namespace kcp2k
         static KcpChannel ToKcpChannel(int channel) =>
             channel == Channels.Reliable ? KcpChannel.Reliable : KcpChannel.Unreliable;
 
+        TransportError ToTransportError(ErrorCode error)
+        {
+            switch(error)
+            {
+                case ErrorCode.DnsResolve: return TransportError.DnsResolve;
+                case ErrorCode.Timeout: return TransportError.Timeout;
+                case ErrorCode.Congestion: return TransportError.Congestion;
+                case ErrorCode.InvalidReceive: return TransportError.InvalidReceive;
+                case ErrorCode.InvalidSend: return TransportError.InvalidSend;
+                case ErrorCode.ConnectionClosed: return TransportError.ConnectionClosed;
+                case ErrorCode.Unexpected: return TransportError.Unexpected;
+                default: throw new InvalidCastException($"KCP: missing error translation for {error}");
+            }
+        }
+
         void Awake()
         {
             // logging
@@ -90,11 +105,13 @@ namespace kcp2k
                 ? new KcpClientNonAlloc(
                       () => OnClientConnected.Invoke(),
                       (message, channel) => OnClientDataReceived.Invoke(message, FromKcpChannel(channel)),
-                      () => OnClientDisconnected.Invoke())
+                      () => OnClientDisconnected.Invoke(),
+                      (error, reason) => OnClientError.Invoke(ToTransportError(error), reason))
                 : new KcpClient(
                       () => OnClientConnected.Invoke(),
                       (message, channel) => OnClientDataReceived.Invoke(message, FromKcpChannel(channel)),
-                      () => OnClientDisconnected.Invoke());
+                      () => OnClientDisconnected.Invoke(),
+                      (error, reason) => OnClientError.Invoke(ToTransportError(error), reason));
 
             // server
             server = NonAlloc
@@ -102,6 +119,7 @@ namespace kcp2k
                       (connectionId) => OnServerConnected.Invoke(connectionId),
                       (connectionId, message, channel) => OnServerDataReceived.Invoke(connectionId, message, FromKcpChannel(channel)),
                       (connectionId) => OnServerDisconnected.Invoke(connectionId),
+                      (connectionId, error, reason) => OnServerError.Invoke(connectionId, ToTransportError(error), reason),
                       DualMode,
                       NoDelay,
                       Interval,
@@ -116,6 +134,7 @@ namespace kcp2k
                       (connectionId) => OnServerConnected.Invoke(connectionId),
                       (connectionId, message, channel) => OnServerDataReceived.Invoke(connectionId, message, FromKcpChannel(channel)),
                       (connectionId) => OnServerDisconnected.Invoke(connectionId),
+                      (connectionId, error, reason) => OnServerError.Invoke(connectionId, ToTransportError(error), reason),
                       DualMode,
                       NoDelay,
                       Interval,
@@ -133,7 +152,7 @@ namespace kcp2k
             Debug.Log("KcpTransport initialized!");
         }
 
-        private void OnValidate()
+        void OnValidate()
         {
             // show max message sizes in inspector for convenience
             ReliableMaxMessageSize = KcpConnection.ReliableMaxMessageSize(ReceiveWindowSize);
@@ -196,7 +215,11 @@ namespace kcp2k
             OnServerDataSent?.Invoke(connectionId, segment, channelId);
         }
         public override void ServerDisconnect(int connectionId) =>  server.Disconnect(connectionId);
-        public override string ServerGetClientAddress(int connectionId) => server.GetClientAddress(connectionId);
+        public override string ServerGetClientAddress(int connectionId)
+        {
+            IPEndPoint endPoint = server.GetClientEndPoint(connectionId);
+            return endPoint != null ? endPoint.Address.ToString() : "";
+        }
         public override void ServerStop() => server.Stop();
         public override void ServerEarlyUpdate()
         {

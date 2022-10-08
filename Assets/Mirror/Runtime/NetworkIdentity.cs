@@ -930,7 +930,9 @@ namespace Mirror
                     // observers writer too
                     int startPosition = ownerWriter.Position;
 
-                    // write index as byte [0..255]
+                    // write index as byte [0..255].
+                    // necessary because deserialize may only get data for some
+                    // components because not dirty, not owner, etc.
                     ownerWriter.WriteByte((byte)i);
 
                     // serialize into ownerWriter first
@@ -966,7 +968,11 @@ namespace Mirror
             // (otherwise [SyncVar] changes would never be serialized in tests)
             //
             // NOTE: != instead of < because int.max+1 overflows at some point.
-            if (lastSerialization.tick != tick || !Application.isPlaying)
+            if (lastSerialization.tick != tick
+#if UNITY_EDITOR
+                || !Application.isPlaying
+#endif
+               )
             {
                 // reset
                 lastSerialization.ownerWriter.Position = 0;
@@ -1071,7 +1077,7 @@ namespace Mirror
         }
 
         // Helper function to handle Command/Rpc
-        internal void HandleRemoteCall(byte componentIndex, int functionHash, RemoteCallType remoteCallType, NetworkReader reader, NetworkConnectionToClient senderConnection = null)
+        internal void HandleRemoteCall(byte componentIndex, ushort functionHash, RemoteCallType remoteCallType, NetworkReader reader, NetworkConnectionToClient senderConnection = null)
         {
             // check if unity object has been destroyed
             if (this == null)

@@ -1,7 +1,7 @@
-using Config;
 using Mirror;
 using Steamworks;
 using System;
+using Data.Config;
 using UnityEngine;
 
 namespace UI.Menu

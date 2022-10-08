@@ -1,8 +1,8 @@
-using Config;
 using Mirror;
 using Steamworks;
 using System;
 using System.Collections.Generic;
+using Data.Config;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,16 +12,16 @@ namespace Networking
     {
         [SerializeField] private GameObject unitBasePrefab;
         [SerializeField] private GameLoopController gameLoopControllerPrefab;
-        [SerializeField] PlayersConfig playersConfig;
-        [SerializeField] NetworkConfig networkConfig;
+        [SerializeField] private PlayersConfig playersConfig;
+        [SerializeField] private NetworkConfig networkConfig;
 
-        private bool isGameInProgress = false;
-        private List<RTSPlayer> players = new List<RTSPlayer>();
+        private bool isGameInProgress;
+        private List<RTSPlayer> players = new();
 
         public static Action ClientConnected;
         public static Action ClientDisonnected;
 
-        public List<RTSPlayer> Players { get => players; }
+        public List<RTSPlayer> Players => players;
 
         #region Server
         public override void OnServerConnect(NetworkConnectionToClient conn)
@@ -44,29 +44,6 @@ namespace Networking
         {
             players.Clear();
             isGameInProgress = false;
-        }
-
-        public override void OnServerAddPlayer(NetworkConnectionToClient conn)
-        {
-            base.OnServerAddPlayer(conn);
-
-            RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
-            players.Add(player);
-
-            string playerName;
-            if (networkConfig.UseSteam)
-            {
-                playerName = SteamFriends.GetPersonaName();
-            }
-            else
-            {
-                playerName = $"Player {players.Count}";
-            }
-            player.SetDisplayName(playerName);
-            var nextColor = (players.Count - 1) % players.Count;
-            player.SetTeamColor(playersConfig.TeamColors[nextColor]);
-            
-            player.SetIsPartyOwner(players.Count == 1);
         }
 
         public override void OnServerSceneChanged(string newSceneName)
@@ -93,18 +70,46 @@ namespace Networking
             isGameInProgress = true;
             ServerChangeScene("Scene_Map_01");
         }
+
+        public override void OnServerAddPlayer(NetworkConnectionToClient conn)
+        {
+            base.OnServerAddPlayer(conn);
+
+            RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
+            players.Add(player);
+
+            SetPlayerName(player);
+            SetPlayerColor(player);
+            player.SetIsPartyOwner(players.Count == 1);
+        }
+
+        private void SetPlayerName(RTSPlayer player)
+        {
+            string playerName = networkConfig.UseSteam
+                ? SteamFriends.GetPersonaName()
+                : $"Player {players.Count}";
+            player.SetDisplayName(playerName);
+        }
+
+        private void SetPlayerColor(RTSPlayer player)
+        {
+            int nextColor = (players.Count - 1) % players.Count;
+            player.SetDisplayColor(playersConfig.PlayersColors[nextColor]);
+            Debug.Log($"player {player.name} has color {player.DisplayColor}");
+        }
+
         #endregion
 
         #region Client
-        public override void OnClientConnect(NetworkConnection conn)
+        public override void OnClientConnect()
         {
-            base.OnClientConnect(conn);
+            base.OnClientConnect();
             ClientConnected?.Invoke();
         }
 
-        public override void OnClientDisconnect(NetworkConnection conn)
+        public override void OnClientDisconnect()
         {
-            base.OnClientDisconnect(conn);
+            base.OnClientDisconnect();
             ClientDisonnected?.Invoke();
         }
 

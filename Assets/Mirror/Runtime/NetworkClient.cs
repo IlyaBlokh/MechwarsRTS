@@ -71,7 +71,7 @@ namespace Mirror
         // => public so that custom NetworkManagers can hook into it
         public static Action OnConnectedEvent;
         public static Action OnDisconnectedEvent;
-        public static Action<Exception> OnErrorEvent;
+        public static Action<TransportError, string> OnErrorEvent;
 
         /// <summary>Registered spawnable prefabs by assetId.</summary>
         public static readonly Dictionary<Guid, GameObject> prefabs =
@@ -109,7 +109,7 @@ namespace Mirror
             Transport.activeTransport.OnClientConnected += OnTransportConnected;
             Transport.activeTransport.OnClientDataReceived += OnTransportData;
             Transport.activeTransport.OnClientDisconnected += OnTransportDisconnected;
-            Transport.activeTransport.OnClientError += OnError;
+            Transport.activeTransport.OnClientError += OnTransportError;
         }
 
         static void RemoveTransportHandlers()
@@ -118,7 +118,7 @@ namespace Mirror
             Transport.activeTransport.OnClientConnected -= OnTransportConnected;
             Transport.activeTransport.OnClientDataReceived -= OnTransportData;
             Transport.activeTransport.OnClientDisconnected -= OnTransportDisconnected;
-            Transport.activeTransport.OnClientError -= OnError;
+            Transport.activeTransport.OnClientError -= OnTransportError;
         }
 
         internal static void RegisterSystemHandlers(bool hostMode)
@@ -432,10 +432,13 @@ namespace Mirror
             RemoveTransportHandlers();
         }
 
-        static void OnError(Exception exception)
+        // transport errors are forwarded to high level
+        static void OnTransportError(TransportError error, string reason)
         {
-            Debug.LogException(exception);
-            OnErrorEvent?.Invoke(exception);
+            // transport errors will happen. logging a warning is enough.
+            // make sure the user does not panic.
+            Debug.LogWarning($"Client Transport Error: {error}: {reason}. This is fine.");
+            OnErrorEvent?.Invoke(error, reason);
         }
 
         // send ////////////////////////////////////////////////////////////////
@@ -1142,9 +1145,14 @@ namespace Mirror
         }
 
         // Checks if identity is not spawned yet, not hidden and has sceneId
+        // TODO merge with ValidateSceneObject on server
         static bool ConsiderForSpawning(NetworkIdentity identity)
         {
             // not spawned yet, not hidden, etc.?
+
+            // need to ensure it's not active yet because
+            // PrepareToSpawnSceneObjects may be called multiple times in case
+            // the ObjectSpawnStarted message is received multiple times.
             return !identity.gameObject.activeSelf &&
                    identity.gameObject.hideFlags != HideFlags.NotEditable &&
                    identity.gameObject.hideFlags != HideFlags.HideAndDontSave &&
@@ -1164,7 +1172,17 @@ namespace Mirror
                 // add all unspawned NetworkIdentities to spawnable objects
                 if (ConsiderForSpawning(identity))
                 {
-                    spawnableObjects.Add(identity.sceneId, identity);
+                    if (spawnableObjects.TryGetValue(identity.sceneId, out NetworkIdentity existingIdentity))
+                    {
+                        string msg = $"NetworkClient: Duplicate sceneId {identity.sceneId} detected on {identity.gameObject.name} and {existingIdentity.gameObject.name}\n" +
+                            $"This can happen if a networked object is persisted in DontDestroyOnLoad through loading / changing to the scene where it originated,\n" +
+                            $"otherwise you may need to open and re-save the {identity.gameObject.scene} to reset scene id's.";
+                        Debug.LogWarning(msg, identity.gameObject);
+                    }
+                    else
+                    {
+                        spawnableObjects.Add(identity.sceneId, identity);
+                    }
                 }
             }
         }

@@ -1,8 +1,9 @@
 using Combat;
 using Mirror;
-using Resources;
 using System;
+using GameResources;
 using UnityEngine;
+using Utils;
 
 namespace Units
 {

@@ -1,5 +1,5 @@
 using Mirror;
-using Resources;
+using Networking;
 using TMPro;
 using UnityEngine;
 
