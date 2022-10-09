@@ -150,10 +150,7 @@ MonoBehaviour:
   syncInterval: 0.1
   renderers:
   - {fileID: 2527092703859085076}
-  - {fileID: 7102062772287692713}
-  - {fileID: 5025616987687487667}
-  - {fileID: 8333261443569354171}
-  - {fileID: 2671575231931457341}
+  - {fileID: 5810714977187946906}
   config: {fileID: 11400000, guid: fa051b488edea7d4393f7931eb96d1b9, type: 2}
 --- !u!1001 &5810714977190279432
 PrefabInstance:
@@ -220,14 +217,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1faf2765fef8034cbbf551a02f73d24, type: 3}
---- !u!23 &2671575231931457341 stripped
+--- !u!23 &5810714977187946906 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8480447392669656629, guid: a1faf2765fef8034cbbf551a02f73d24, type: 3}
-  m_PrefabInstance: {fileID: 5810714977190279432}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &5025616987687487667 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1521471730130874811, guid: a1faf2765fef8034cbbf551a02f73d24, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2332818, guid: a1faf2765fef8034cbbf551a02f73d24, type: 3}
   m_PrefabInstance: {fileID: 5810714977190279432}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5810714977189802788 stripped
@@ -238,16 +230,6 @@ Transform:
 --- !u!1 &5810714977190155332 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 126284, guid: a1faf2765fef8034cbbf551a02f73d24, type: 3}
-  m_PrefabInstance: {fileID: 5810714977190279432}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &7102062772287692713 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3615359204787496609, guid: a1faf2765fef8034cbbf551a02f73d24, type: 3}
-  m_PrefabInstance: {fileID: 5810714977190279432}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &8333261443569354171 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2523844681249258675, guid: a1faf2765fef8034cbbf551a02f73d24, type: 3}
   m_PrefabInstance: {fileID: 5810714977190279432}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6061141259768662800
