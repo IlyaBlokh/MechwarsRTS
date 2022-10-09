@@ -20,17 +20,20 @@ namespace Utils
         {
             RTSPlayer ownerPlayer = connectionToClient.identity.GetComponent<RTSPlayer>();
             playerColor = ownerPlayer.DisplayColor;
-            Debug.Log($"setter color: {playerColor}");
         }
         #endregion
 
         #region Client
         private void ClientHandleColorUpdate(ColorId oldColor, ColorId newColor)
         {
-            Debug.Log($"ClientHandleColorUpdate. new color: {newColor}");
-            foreach (Renderer renderer in renderers)
+            foreach (Renderer rend in renderers)
             {
-                renderer.material = config.TeamColors.First(x => x.ColorId == newColor).Material;
+                TeamColor teamColor = config.TeamColors.First(x => x.ColorId == newColor);
+                rend.material =
+                    rend.gameObject.layer == LayerMask.NameToLayer("Minimap")
+                        ? teamColor.MinimapMaterial
+                        : teamColor.GameplayMaterial;
+
             }
         }
 

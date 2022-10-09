@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamColors:
   - ColorId: 1
-    Material: {fileID: 2100000, guid: 21583e009529de2498db37e0c7b79bfe, type: 2}
+    GameplayMaterial: {fileID: 2100000, guid: 21583e009529de2498db37e0c7b79bfe, type: 2}
+    MinimapMaterial: {fileID: 2100000, guid: 412e7b6a2f6d1ea429e8b108736f85db, type: 2}
   - ColorId: 2
-    Material: {fileID: 2100000, guid: d697aa8eca9a6074e932a13fe7d7f5c1, type: 2}
+    GameplayMaterial: {fileID: 2100000, guid: d697aa8eca9a6074e932a13fe7d7f5c1, type: 2}
+    MinimapMaterial: {fileID: 2100000, guid: b71df5c429dcee940852d4317cef7d45, type: 2}
   - ColorId: 3
-    Material: {fileID: 2100000, guid: c174891192224e54ba372111165bf888, type: 2}
+    GameplayMaterial: {fileID: 2100000, guid: c174891192224e54ba372111165bf888, type: 2}
+    MinimapMaterial: {fileID: 2100000, guid: 453883f54adeef34aa251e05bfa00be1, type: 2}
   - ColorId: 4
-    Material: {fileID: 2100000, guid: 466c52d1edcd56d4b95e88152cfc7345, type: 2}
+    GameplayMaterial: {fileID: 2100000, guid: 466c52d1edcd56d4b95e88152cfc7345, type: 2}
+    MinimapMaterial: {fileID: 2100000, guid: 7d45d00731753344288991c34ac55aea, type: 2}

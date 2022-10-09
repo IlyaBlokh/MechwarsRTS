@@ -95,7 +95,6 @@ namespace Networking
         {
             int nextColor = (players.Count - 1) % players.Count;
             player.SetDisplayColor(playersConfig.PlayersColors[nextColor]);
-            Debug.Log($"player {player.name} has color {player.DisplayColor}");
         }
 
         #endregion

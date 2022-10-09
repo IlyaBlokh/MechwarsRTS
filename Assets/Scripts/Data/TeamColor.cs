@@ -7,6 +7,7 @@ namespace Data
   public class TeamColor
   {
     public ColorId ColorId;
-    public Material Material;
+    public Material GameplayMaterial;
+    public Material MinimapMaterial;
   }
 }
