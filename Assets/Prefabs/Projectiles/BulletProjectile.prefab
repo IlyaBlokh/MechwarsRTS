@@ -168,4 +168,4 @@ MonoBehaviour:
   syncInterval: 0.1
   renderers:
   - {fileID: 7853930746545334381}
-  config: {fileID: 0}
+  config: {fileID: 11400000, guid: fa051b488edea7d4393f7931eb96d1b9, type: 2}

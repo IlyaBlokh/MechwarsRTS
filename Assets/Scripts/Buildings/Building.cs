@@ -24,35 +24,27 @@ namespace Buildings
         public static event Action<Building> OnAuthorityBuildingSpawned;
         public static event Action<Building> OnAuthorityBuildingDrop;
 
-        public Sprite Icon { get => icon; }
-        public int Id { get => id;  }
-        public int Price { get => price; }
-        public GameObject PreviewGameobject { get => previewGameobject; }
+        public Sprite Icon => icon;
+        public int Id => id;
+        public int Price => price;
+        public GameObject PreviewGameobject => previewGameobject;
 
-        private void Awake()
-        {
+        private void Awake() => 
             damageable = GetComponent<Damageable>();
-        }
 
         #region Server
-        public override void OnStartServer()
-        {
+        public override void OnStartServer() => 
             OnServerBuildingSpawned?.Invoke(this);
-        }
 
-        public override void OnStopServer()
-        {
+        public override void OnStopServer() => 
             OnServerBuildingDrop?.Invoke(this);
-        }
 
         #endregion
 
         #region Client
 
-        public override void OnStartAuthority()
-        {
+        public override void OnStartAuthority() => 
             OnAuthorityBuildingSpawned?.Invoke(this);
-        }
 
         public override void OnStopClient()
         {

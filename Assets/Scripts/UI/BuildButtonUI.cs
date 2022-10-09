@@ -15,13 +15,13 @@ namespace UI
         [SerializeField] private Building building;
         [SerializeField] private LayerMask floorMask;
 
-        private UnityEngine.Camera mainCamera;
-        private RTSPlayer ownerPlayer = null;
+        private Camera mainCamera;
+        private RTSPlayer ownerPlayer;
         private GameObject buildingPreviewInstance;
         private Renderer buildingPreviewRenderer;
         private Color rendererColor;
         private Ray ray;
-        private bool isPlacing = false;
+        private bool isPlacing;
 
         private void Start()
         {

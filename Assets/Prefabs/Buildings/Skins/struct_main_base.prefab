@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3376814}
   - component: {fileID: 2332818}
   m_Layer: 0
-  m_Name: struct_main_base
+  m_Name: struct_Main_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
