@@ -75,7 +75,7 @@ namespace UI
 
                 rendererColor = ownerPlayer.PlayerBuildingPlacer.IsPlacingAllowed(building.GetComponent<BoxCollider>(), hitInfo.point) ?
                     Color.green : Color.red;
-                buildingPreviewRenderer.material.SetColor("_BaseColor", rendererColor);
+                buildingPreviewRenderer.material.SetColor("_Color", rendererColor);
 
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {

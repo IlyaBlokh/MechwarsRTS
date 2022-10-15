@@ -1,8 +1,10 @@
+using System;
 using Mirror;
 using System.Collections.Generic;
 using Data.Config;
 using GameResources;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Buildings
 {
@@ -11,41 +13,38 @@ namespace Buildings
         [SerializeField] BuildingsConfig buildingsConfig;
         [SerializeField] PlayerResources playerResources;
 
-        private List<Building> buildings = new List<Building>();
-        public List<Building> Buildings { get => buildings; }
+        private List<Building> buildings = new();
+        public List<Building> Buildings => buildings;
+        
+        public bool IsPlacingAllowed(BoxCollider buildingCollider, Vector3 locationPoint) =>
+            !OverlapsWithLayers(buildingCollider, locationPoint) 
+            && IsNearToOwnBuildings(locationPoint);
 
-        public bool IsPlacingAllowed(BoxCollider buildingCollider, Vector3 locationPoint)
+        private bool IsNearToOwnBuildings(Vector3 locationPoint)
         {
-            //Check for overlapping
-            if (Physics.CheckBox(locationPoint,
+            foreach (Building building in buildings)
+                if ((building.transform.position - locationPoint).sqrMagnitude 
+                    < buildingsConfig.BuildRange * buildingsConfig.BuildRange) 
+                    return true;
+            return false;
+        }
+
+        private bool OverlapsWithLayers(BoxCollider buildingCollider, Vector3 locationPoint)
+        {
+            return Physics.CheckBox(locationPoint,
                 buildingCollider.size / 2,
                 buildingCollider.transform.rotation,
-                buildingsConfig.BuildingLockedLayers))
-            {
-                return false;
-            }
-
-            //Check for range
-            foreach (Building building in buildings)
-            {
-                if ((building.transform.position - locationPoint).sqrMagnitude
-                    < buildingsConfig.BuildRange * buildingsConfig.BuildRange)
-                {
-                    return true;
-                }
-            }
-            return false;
+                buildingsConfig.BuildingLockedLayers);
         }
 
         #region Server
         [Command]
         public void CmdTryPlaceBuilding(int buildingId, Vector3 location)
         {
-            var buildingToPlace = buildingsConfig.Buildings.Find(b => b.Id == buildingId);
+            Building buildingToPlace = buildingsConfig.Buildings.Find(b => b.Id == buildingId);
             if (buildingToPlace == null) return;
 
-            BoxCollider buildingCollider;
-            if (!buildingToPlace.TryGetComponent(out buildingCollider))
+            if (!buildingToPlace.TryGetComponent(out BoxCollider buildingCollider))
             {
                 Debug.LogError($"{buildingToPlace} missing box collider");
                 return;
@@ -56,7 +55,7 @@ namespace Buildings
                 //Check for resources
                  if (!playerResources.TrySubstractCredits(buildingToPlace.Price)) { return; }
 
-                var buildingInstance = Instantiate(buildingToPlace.gameObject, location, buildingToPlace.transform.rotation);
+                GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, location, buildingToPlace.transform.rotation);
                 NetworkServer.Spawn(buildingInstance, connectionToClient);
             }
         }
