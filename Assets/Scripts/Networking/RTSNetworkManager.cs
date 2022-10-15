@@ -55,7 +55,7 @@ namespace Networking
 
                 //spawn bases
                 players.ForEach(player => {
-                    var unitBaseBuilding = Instantiate(
+                    GameObject unitBaseBuilding = Instantiate(
                         unitBasePrefab,
                         GetStartPosition().position,
                         Quaternion.identity);

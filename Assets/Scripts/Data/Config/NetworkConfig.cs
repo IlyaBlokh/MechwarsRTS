@@ -6,6 +6,6 @@ namespace Data.Config
     public class NetworkConfig : ScriptableObject
     {
         [SerializeField] private bool useSteam = false;
-        public bool UseSteam { get => useSteam; }
+        public bool UseSteam => useSteam;
     }
 }
