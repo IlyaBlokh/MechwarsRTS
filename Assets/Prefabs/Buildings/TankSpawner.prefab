@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: 8550843493b7b104ca4c92bf819717c4, type: 3}
   id: 2
   price: 50
   previewGameobject: {fileID: 6607272447638171147}
