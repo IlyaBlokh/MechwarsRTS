@@ -11,10 +11,10 @@ namespace UI.Menu
     public class LobbyWindow : MonoBehaviour
     {
         [SerializeField] private GameObject lobbyUI;
-        [SerializeField] private Button startGameBtn;
+        [SerializeField] private GameObject startGameBtn;
         [SerializeField] private TMP_Text[] playerNames;
 
-        private List<RTSPlayer> connectedPlayers = new List<RTSPlayer>();
+        private List<RTSPlayer> connectedPlayers = new();
 
         private void Start()
         {
@@ -58,7 +58,7 @@ namespace UI.Menu
             {
                 playerNames[i].text = "Waiting for player...";
             }
-            startGameBtn.interactable = connectedPlayers.Count >= 2;
+            startGameBtn.SetActive(connectedPlayers.Count >= 2);
         }
 
         public void StartGame()
