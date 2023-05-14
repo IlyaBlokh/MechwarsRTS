@@ -4,9 +4,9 @@ Realtime strategy game with multiplayer
 
 Playable via local network or Steam with friends
 
-[![Gameplay](http://img.youtube.com/vi/LOGzOtLlHPo/0.jpg)](https://youtu.be/LOGzOtLlHPo "Mechwars RTS")
 
-*Click to watch video*
+https://github.com/IlyaBlokh/MechwarsRTS/assets/1507182/ff0c4423-5c92-41af-bcba-1018726e1d66
+
 
 Developed on Unity, C#, Mirror, Streamworks API
 
